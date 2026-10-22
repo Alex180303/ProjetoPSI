@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_pesquisar"
+        android:icon="@drawable/ic_search"
+        android:title="Pesquisar"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_calendario"
+        android:icon="@drawable/ic_calendar"
+        android:title="Calendário"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_estrela"
+        android:icon="@drawable/estrela"
+        android:title="Favoritos"
+        app:showAsAction="never" />
+
+</menu>
