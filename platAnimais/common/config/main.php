@@ -12,11 +12,19 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-        'cache' => [
-            'class' => \yii\caching\FileCache::class,
+        'authManager' => [
+            'class' => 'yii\rbac\DBManager',
+            'cache' => [
+                'class' => \yii\caching\FileCache::class,
+            ],
         ],
+<<<<<<< Updated upstream
         'authManager' => [
             'class' => \yii\rbac\DbManager::class,
         ],
+=======
+
+
+>>>>>>> Stashed changes
     ],
 ];
