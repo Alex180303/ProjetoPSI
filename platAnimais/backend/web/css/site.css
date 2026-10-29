@@ -185,6 +185,29 @@ a.desc:after {
     pointer-events: none;
 }
 
+.login-brand-eyebrow {
+    letter-spacing: .14em;
+}
+
+.login-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.75rem;
+    line-height: 1;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, .28);
+}
+
+.login-brand-mark--mobile {
+    background: linear-gradient(135deg, #40B3D8 0%, #3a9cbd 55%, #83C933 100%);
+    border: 0;
+    box-shadow: 0 4px 14px rgba(64, 179, 216, .35);
+}
+
 .login-btn {
     background: linear-gradient(135deg, #40B3D8, #3a9cbd);
     border: none;

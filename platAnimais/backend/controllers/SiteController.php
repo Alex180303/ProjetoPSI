@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace backend\controllers;
 
-use common\models\LoginForm;
+use backend\models\LoginForm;
 use common\rbac\Rbac;
 use Yii;
 use yii\filters\AccessControl;
