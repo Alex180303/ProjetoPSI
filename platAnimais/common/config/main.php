@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use common\rbac\Rbac;
+use yii\rbac\DbManager;
+
 return [
     'bootstrap' => [
         \common\bootstrap\MailerBootstrap::class,
@@ -13,10 +16,11 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'authManager' => [
-            'class' => \yii\rbac\DbManager::class,
-            'cache' => [
-                'class' => \yii\caching\FileCache::class,
-            ],
+            'class' => DbManager::class,
+            // O papel "visitante" não é atribuído explicitamente: aplica-se a
+            // qualquer pedido não autenticado através da regra isGuest.
+            'defaultRoles' => [Rbac::ROLE_VISITANTE],
+            // 'cache' => 'cache',
         ],
     ],
 ];

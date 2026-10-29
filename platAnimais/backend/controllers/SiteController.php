@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\rbac\Rbac;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -31,9 +32,14 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => [Rbac::CONFIGURAR_SISTEMA],
                     ],
                 ],
             ],

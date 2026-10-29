@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use common\models\Especie;
 use backend\models\EspecieSearch;
+use common\rbac\Rbac;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,6 +23,15 @@ class EspecieController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => [Rbac::GERIR_CATALOGO],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

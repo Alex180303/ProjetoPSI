@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace frontend\controllers;
 
 use common\models\LoginForm;
+use common\rbac\Rbac;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
@@ -44,12 +45,17 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'about'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => [Rbac::REGISTAR_CONTA],
+                    ],
+                    [
+                        'actions' => ['about'],
+                        'allow' => true,
+                        'roles' => [Rbac::CONSULTAR_ASSOCIACAO],
                     ],
                     [
                         'actions' => ['logout'],

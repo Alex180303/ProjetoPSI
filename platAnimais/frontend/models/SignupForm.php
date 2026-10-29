@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace frontend\models;
 
 use common\models\User;
+use common\rbac\Rbac;
 use Yii;
 use yii\base\Model;
 use yii\mail\MailerInterface;
@@ -63,7 +64,20 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
 
-        return $user->save() && $this->sendEmail($mailer, $user, $supportEmail, $appName);
+        if (!$user->save()) {
+            return false;
+        }
+
+        // Todo o novo registo começa como adotante. Um administrador pode
+        // depois atribuir o papel de anunciante/associação com
+        // `yii rbac/assign <username> anunciante`.
+        $auth = Yii::$app->authManager;
+        $adotante = $auth->getRole(Rbac::ROLE_ADOTANTE);
+        if ($adotante !== null) {
+            $auth->assign($adotante, $user->getId());
+        }
+
+        return $this->sendEmail($mailer, $user, $supportEmail, $appName);
     }
 
     /**
