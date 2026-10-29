@@ -91,8 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="-30dp"
             android:layout_gravity="bottom"
-            app:itemTextColor="@color/nav_item_color"
-            app:itemIconTint="@color/nav_item_color"
+            app:itemIconTint="@color/azul_escuro"
+            app:itemTextColor="@color/purple"
             app:menu="@menu/bottom_nav_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

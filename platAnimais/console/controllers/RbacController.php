@@ -21,32 +21,32 @@ class m170124_084304_init_rbac extends Migration
         $consultarAssociacao->description = 'Ver associações, FAQ e Sobre';
         $auth->add($consultarAssociacao);
 
-        // Adiciona as permissões"adocao/submeter"
+        // Adiciona as permissões "adocao/submeter"
         $submeterAdocao = $auth->createPermission('adocaoSubmeter');
         $submeterAdocao->description = 'Submeter pedido de adoção';
         $auth->add($submeterAdocao);
 
-        // Adiciona as permissões"adocao/consultarProprios"
+        // Adiciona as permissões "adocao/consultarProprios"
         $consultarAdocaoProprios = $auth->createPermission('adocaoConsultarProprios');
         $consultarAdocaoProprios->description = 'Acompanhar pedidos próprios';
         $auth->add($consultarAdocaoProprios);
 
-        // Adiciona as permissões"animal/favoritar"
+        // Adiciona as permissões "animal/favoritar"
         $favoritarAnimal = $auth->createPermission('animalFavoritar');
         $favoritarAnimal->description = 'Guardar favoritos';
         $auth->add($favoritarAnimal);
 
-        // Adiciona as permissões"perfil/editarProprio"
+        // Adiciona as permissões "perfil/editarProprio"
         $editarPerfilProprio = $auth->createPermission('perfilEditarProprio');
         $editarPerfilProprio->description = 'Editar perfil próprio';
         $auth->add($editarPerfilProprio);
 
-        // Adiciona as permissões"animal/publicar"
+        // Adiciona as permissões "animal/publicar"
         $publicarAnimal = $auth->createPermission('animalPublicar');
         $publicarAnimal->description = 'Criar anúncio com fotografia';
         $auth->add($publicarAnimal);
 
-        // Adiciona as permissões"animal/gerirProprios"
+        // Adiciona as permissões "animal/gerirProprios"
         $gerirAnimalProprios = $auth->createPermission('animalGerirProprios');
         $gerirAnimalProprios->description = 'Editar anúncio e estado próprios';
         $auth->add($gerirAnimalProprios);
