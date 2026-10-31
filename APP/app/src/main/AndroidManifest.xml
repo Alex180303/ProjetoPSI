@@ -39,6 +39,10 @@
         <activity
             android:name=".PublicarActivity"
             android:exported="false" />
+        <activity
+            android:name=".NotificacaoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
