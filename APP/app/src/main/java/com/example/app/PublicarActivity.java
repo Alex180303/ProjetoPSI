@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class PublicarActivity extends AppCompatActivity {
 
     @Override
@@ -22,7 +24,13 @@ public class PublicarActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        Navegacao.configurar(this, nav, R.id.nav_publicar);
+
     }
+
+
 
     public void onClickPublicar(View view) {
         Toast.makeText(this, "Anúncio publicado", Toast.LENGTH_SHORT).show();
