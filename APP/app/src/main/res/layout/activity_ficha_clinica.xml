@@ -13,95 +13,259 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                app:title="Ficha Clinica"
-                app:navigationIcon="@drawable/arrow"
-                app:menu="@menu/toolbar"/>
-        </com.google.android.material.appbar.AppBarLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="?attr/actionBarSize"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="1dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNomeAnimal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:hint="Nome do Animal">
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNomeAnimal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:background="@color/azul"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NOME DO ANIMAL"
+                        android:textColor="@color/azul_escuro"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RAÇA  E  ANO"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </LinearLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilVacinacao"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Vacinação">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="7dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etVacinacao"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilDesparasitacao"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="VACINAÇÃO"
+                                android:textColor="@color/azul_escuro"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:text="Em dia"
+                                android:textStyle="bold"
+                                android:textColor="@color/azul_escuro"
+                                app:strokeColor="@color/azul_escuro"
+                                app:cornerRadius="16dp"
+                                app:strokeWidth="2dp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Desparasitação">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="7dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDesparasitacao"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="DESPARASITAÇÃO"
+                                android:textColor="@color/azul_escuro"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEsterizacao"
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:text="Em dia"
+                                android:textStyle="bold"
+                                android:textColor="@color/azul_escuro"
+                                app:strokeColor="@color/azul_escuro"
+                                app:cornerRadius="16dp"
+                                app:strokeWidth="2dp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Esterização">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="7dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEsterizacao"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="ESTERILIZAÇÃO"
+                                android:textColor="@color/azul_escuro"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilHistorico"
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:text="Em dia"
+                                android:textStyle="bold"
+                                android:textColor="@color/azul_escuro"
+                                app:strokeColor="@color/azul_escuro"
+                                app:cornerRadius="16dp"
+                                app:strokeWidth="2dp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Histórico Médico">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="7dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etHistorico"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="HISTÓRICO MÉDICO"
+                                android:textColor="@color/azul_escuro"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CONTEÚDO DO HISTÓRICO MÉDICO"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -26,13 +26,19 @@
             android:exported="false" />
         <activity
             android:name=".AnuncioActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.App.WithActionBar"/>
         <activity
             android:name=".FavoritosActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.App.WithActionBar"/>
         <activity
             android:name=".FichaClinicaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".PerfilActivity"
+            android:theme="@style/Theme.App.WithActionBar"/>
         <activity
             android:name=".PerfilActivity"
             android:exported="false" />
@@ -42,6 +48,31 @@
         <activity
             android:name=".NotificacaoActivity"
             android:exported="false"
+            android:parentActivityName=".PerfilActivity"
+            android:theme="@style/Theme.App.WithActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".DescontosActivity"
+            android:exported="false"
+            android:parentActivityName=".PerfilActivity"
+            android:theme="@style/Theme.App.WithActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AssociacoesActivity"
+            android:exported="false"
+            android:parentActivityName=".PerfilActivity"
+            android:theme="@style/Theme.App.WithActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PedirAdocaoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.App.WithActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PedidosActivity"
+            android:exported="false"
+            android:parentActivityName=".PerfilActivity"
+            android:theme="@style/Theme.App.WithActionBar"
             android:windowSoftInputMode="adjustResize" />
     </application>
 

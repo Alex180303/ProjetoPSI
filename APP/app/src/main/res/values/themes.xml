@@ -2,8 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.APP" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/azul</item>
     </style>
 
     <style name="Theme.APP" parent="Base.Theme.APP" />
+
+    <style name="Theme.App.WithActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/azul</item>
+    </style>
 </resources>
