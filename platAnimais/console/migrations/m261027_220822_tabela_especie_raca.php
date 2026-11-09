@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use yii\db\Migration;
 
 class m261027_220822_tabela_especie_raca extends Migration
 {
-    public function safeUp()
+    public function safeUp(): void
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -29,7 +31,7 @@ class m261027_220822_tabela_especie_raca extends Migration
         $this->batchInsert('{{%especie}}', ['nome'], [['Cão'], ['Gato'], ['Passaro'], ['Hamster'], ['Coelho']]);
     }
 
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%raca}}');
         $this->dropTable('{{%especie}}');

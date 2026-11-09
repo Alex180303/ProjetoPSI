@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use yii\db\Migration;
 
-class m261029_205109_tabela_porte extends Migration
+class m261029_200000_tabela_porte extends Migration
 {
-    public function safeUp()
+    public function safeUp(): void
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -19,7 +21,7 @@ class m261029_205109_tabela_porte extends Migration
         $this->batchInsert('{{%porte}}', ['nome'], [['Pequeno'], ['Médio'], ['Grande']]);
     }
 
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%porte}}');
     }

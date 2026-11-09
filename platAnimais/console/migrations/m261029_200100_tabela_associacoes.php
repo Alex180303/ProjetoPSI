@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use yii\db\Migration;
 
-class m261029_213939_tabela_associacoes extends Migration
+class m261029_200100_tabela_associacoes extends Migration
 {
-    public function safeUp()
+    public function safeUp(): void
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -21,7 +23,7 @@ class m261029_213939_tabela_associacoes extends Migration
         ], $tableOptions);
     }
 
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%associacao}}');
     }

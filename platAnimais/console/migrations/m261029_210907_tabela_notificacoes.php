@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use yii\db\Migration;
 
 class m261029_210907_tabela_notificacoes extends Migration
 {
-    public function safeUp()
+    public function safeUp(): void
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -21,7 +23,7 @@ class m261029_210907_tabela_notificacoes extends Migration
         $this->addForeignKey('fk-notificacao-utilizador', '{{%notificacao}}', 'utilizador_id', '{{%user}}', 'id', 'CASCADE');
     }
 
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%notificacao}}');
     }
