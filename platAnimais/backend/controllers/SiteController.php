@@ -39,7 +39,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => [Rbac::CONFIGURAR_SISTEMA],
+//                        'roles' => [Rbac::CONFIGURAR_SISTEMA],
                     ],
                 ],
             ],

@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace backend\models;
 
+use common\models\User;
+
 /**
  * Formulário de autenticação do back-office.
  *
- * Reutiliza a lógica de autenticação do modelo comum, mas apresenta os
- * rótulos e as mensagens de erro em português, tal como o resto da área de
- * gestão da plataforma.
+ * Reutiliza a lógica de autenticação do modelo comum, mas autentica pelo
+ * nome de utilizador (o modelo comum, usado no frontend, autentica por email)
+ * e apresenta os rótulos e as mensagens de erro em português.
  */
 final class LoginForm extends \common\models\LoginForm
 {
+    public string $username = '';
+
+    private User|null $_backendUser = null;
+
     /**
      * {@inheritdoc}
      */
@@ -49,5 +55,18 @@ final class LoginForm extends \common\models\LoginForm
                 $this->addError($attribute, 'Nome de utilizador ou palavra-passe incorretos.');
             }
         }
+    }
+
+    /**
+     * Procura o utilizador ativo pelo nome de utilizador.
+     * O login() do modelo comum usa este método.
+     */
+    protected function getUser(): User|null
+    {
+        if ($this->_backendUser === null) {
+            $this->_backendUser = User::findByUsername($this->username);
+        }
+
+        return $this->_backendUser;
     }
 }

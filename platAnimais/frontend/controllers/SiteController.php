@@ -50,7 +50,8 @@ class SiteController extends Controller
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => [Rbac::REGISTAR_CONTA],
+                        'roles' => ['?'],
+//                        'roles' => [Rbac::REGISTAR_CONTA],
                     ],
                     [
                         'actions' => ['about'],
