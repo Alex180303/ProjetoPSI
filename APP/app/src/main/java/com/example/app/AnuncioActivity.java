@@ -2,6 +2,7 @@ package com.example.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,8 +45,16 @@ public class AnuncioActivity extends AppCompatActivity {
 
         if (destino != null) {
             startActivity(new Intent(this, destino));
-            overridePendingTransition(0, 0);
-            finish();
         }
     }
+
+    public void onClickFichaClinica(View view) {
+        startActivity(new Intent(this, FichaClinicaActivity.class));
+    }
+
+
+    public void onClickPedirAdocao(View view) {
+        startActivity(new Intent(this, PedirAdocaoActivity.class));
+    }
+
 }

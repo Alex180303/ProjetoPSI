@@ -108,6 +108,7 @@
                                 android:layout_height="wrap_content"
                                 style="@style/Widget.Material3.Button.OutlinedButton"
                                 android:text="Em dia"
+                                android:textSize="12dp"
                                 android:textStyle="bold"
                                 android:textColor="@color/azul_escuro"
                                 app:strokeColor="@color/azul_escuro"
@@ -162,6 +163,7 @@
                                 android:layout_height="wrap_content"
                                 style="@style/Widget.Material3.Button.OutlinedButton"
                                 android:text="Em dia"
+                                android:textSize="12dp"
                                 android:textStyle="bold"
                                 android:textColor="@color/azul_escuro"
                                 app:strokeColor="@color/azul_escuro"
@@ -216,6 +218,7 @@
                                 android:layout_height="wrap_content"
                                 style="@style/Widget.Material3.Button.OutlinedButton"
                                 android:text="Em dia"
+                                android:textSize="12dp"
                                 android:textStyle="bold"
                                 android:textColor="@color/azul_escuro"
                                 app:strokeColor="@color/azul_escuro"
@@ -275,7 +278,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="-30dp"
             android:layout_gravity="bottom"
-            app:itemIconTint="@color/azul_escuro"
+            app:itemIconTint="@color/azul"
             app:itemTextColor="@color/purple"
             app:menu="@menu/bottom_nav_menu" />
 

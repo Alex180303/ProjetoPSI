@@ -79,6 +79,49 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
+
+
+                    <!-- Botão de cima -->
+                    <Button
+                        android:id="@+id/btnPedirAdocao"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:text="Pedir Adoção"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/azul_escuro"
+                        app:strokeColor="@color/azul_escuro"
+                        app:cornerRadius="16dp"
+                        app:strokeWidth="2dp"
+                        android:onClick="onClickPedirAdocao"
+                        app:layout_constraintBottom_toTopOf="@+id/btnFichaClinica"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Botão de baixo -->
+                    <Button
+                        android:id="@+id/btnFichaClinica"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:text="Ficha Clínica"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/azul_escuro"
+                        app:strokeColor="@color/azul_escuro"
+                        app:cornerRadius="16dp"
+                        app:strokeWidth="2dp"
+                        android:onClick="onClickFichaClinica"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -90,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:itemIconTint="@color/azul_escuro"
+            app:itemIconTint="@color/azul"
             app:itemTextColor="@color/purple"
             app:menu="@menu/bottom_nav_menu" />
 

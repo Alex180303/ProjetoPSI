@@ -32,31 +32,40 @@ public class PerfilActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
         });
 
-            binding.itemPedidos.setOnClickListener(v ->
-                    startActivity(new Intent(PerfilActivity.this, PedidosActivity.class)));
+        binding.itemPedidos.setOnClickListener(v ->
+                startActivity(new Intent(PerfilActivity.this, PedidosActivity.class)));
 
-            binding.itemDescontos.setOnClickListener(v ->
-                    startActivity(new Intent(PerfilActivity.this, DescontosActivity.class)));
+        binding.itemDescontos.setOnClickListener(v ->
+                startActivity(new Intent(PerfilActivity.this, DescontosActivity.class)));
 
-            binding.itemNotificacoes.setOnClickListener(v ->
-                    startActivity(new Intent(PerfilActivity.this, NotificacaoActivity.class)));
+        binding.itemNotificacoes.setOnClickListener(v ->
+                startActivity(new Intent(PerfilActivity.this, NotificacaoActivity.class)));
 
-            binding.itemAssociacoes.setOnClickListener(v ->
-                    startActivity(new Intent(PerfilActivity.this, AssociacoesActivity.class)));
-
-
+        binding.itemAssociacoes.setOnClickListener(v ->
+                startActivity(new Intent(PerfilActivity.this, AssociacoesActivity.class)));
 
         Navegacao.configurar(this, binding.bottomNavigation, R.id.nav_prefile);
 
         prefs = getSharedPreferences("definicoes", MODE_PRIVATE);
 
-        // Email recebido do login (campo não editável)
+        // Email: vem do Intent ou, se não vier, do que o login guardou
         String email = getIntent().getStringExtra("EMAIL");
-        if (email != null && binding.tilEmail.getEditText() != null) {
+        if (email == null) {
+            email = getSharedPreferences("app", MODE_PRIVATE).getString("EMAIL", "");
+        }
+        if (binding.tilEmail.getEditText() != null) {
             binding.tilEmail.getEditText().setText(email);
+        }
+
+        // Nome: mostrar o que está em memória
+        String nome = Sessao.nome;
+        if (binding.tilNome.getEditText() != null) {
+            binding.tilNome.getEditText().setText(nome);
+        }
+        if (!nome.isEmpty()) {
+            binding.txtNomePerfil.setText(nome);
         }
 
         // Estado guardado da biometria
@@ -74,9 +83,7 @@ public class PerfilActivity extends AppCompatActivity {
             return;
         }
 
-        prefs.edit()
-                .putString("nome", nome)
-                .apply();
+        Sessao.nome = nome;
 
         binding.txtNomePerfil.setText(nome);
         Toast.makeText(this, "Alterações guardadas", Toast.LENGTH_SHORT).show();
@@ -87,6 +94,9 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void onClickTerminarSessao(View view) {
+        getSharedPreferences("app", MODE_PRIVATE).edit().remove("EMAIL").apply();
+        Sessao.nome = "";
+
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

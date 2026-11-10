@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:itemIconTint="@color/azul_escuro"
+            app:itemIconTint="@color/azul"
             app:itemTextColor="@color/purple"
             app:menu="@menu/bottom_nav_menu" />
 

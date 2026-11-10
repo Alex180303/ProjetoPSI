@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClickAnuncio(View view){
         Intent intent = new Intent(this, AnuncioActivity.class);
         startActivity(intent);
-        finish();
     }
 
 

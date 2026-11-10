@@ -47,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         }
         //Toast.makeText(this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show();
         Intent intent= new Intent(this, MainActivity.class);
+        getSharedPreferences("app", MODE_PRIVATE)
+                .edit()
+                .putString("EMAIL", email)
+                .apply();
+
         intent.putExtra("EMAIL", email);
         startActivity(intent);
         finish();
@@ -67,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickEntrarSemLogin(View view){
+        getSharedPreferences("app", MODE_PRIVATE).edit().remove("EMAIL").apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
