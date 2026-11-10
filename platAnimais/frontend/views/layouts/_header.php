@@ -2,69 +2,49 @@
 
 declare(strict_types=1);
 
-/** @var yii\web\View $this */
-
-use yii\bootstrap5\Nav;
-use yii\bootstrap5\NavBar;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
-$items = [
-    [
-        'label' => 'Home',
-        'url' => ['/site/index'],
-    ],
-    [
-        'label' => 'About',
-        'url' => ['/site/about'],
-    ],
-    [
-        'label' => 'Contact',
-        'url' => ['/site/contact'],
-    ],
-    [
-        'label' => 'Signup',
-        'url' => ['/site/signup'],
-        'visible' => Yii::$app->user->isGuest,
-    ],
-    [
-        'label' => 'Login',
-        'url' => ['/site/login'],
-        'visible' => Yii::$app->user->isGuest,
-    ],
-    [
-        'label' => 'Logout (' . Html::encode(Yii::$app->user->identity?->username) . ')',
-        'url' => ['/site/logout'],
-        'linkOptions' => [
-            'data-method' => 'post',
-            'class' => 'logout',
-        ],
-        'visible' => !Yii::$app->user->isGuest,
-    ],
-];
-
+$user = Yii::$app->user;
 ?>
-<header id="header">
-    <?php NavBar::begin(
-        [
-            'brandLabel' => Yii::$app->name,
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-        ],
-    ) ?>
-    <?= Nav::widget(
-        [
-            'options' => ['class' => 'navbar-nav me-auto'],
-            'encodeLabels' => false,
-            'items' => $items,
-        ],
-    ) ?>
-    <?= Html::button(
-        '&#127769;',
-        [
-            'id' => 'theme-toggle',
-            'class' => 'btn btn-link nav-link fs-5',
-            'aria-label' => 'Switch to dark mode',
-        ],
-    ) ?>
-    <?php NavBar::end() ?>
+
+<header class="login-header">
+    <div class="login-header-inner">
+        <?= Html::a(
+                '<span class="login-logo-mark" aria-hidden="true">🐾</span><span>Adote um amigo</span>',
+                Url::home(),
+                [
+                        'class' => 'login-logo',
+                        'aria-label' => 'Página inicial',
+                ],
+        ) ?>
+
+        <nav class="login-header-actions" aria-label="Ações da conta">
+            <?= Html::a('Procurar', ['/site/index'], ['class' => 'login-action']) ?>
+
+            <?php if ($user->isGuest): ?>
+                <?= Html::a('Entrar', ['/site/login'], ['class' => 'login-action']) ?>
+                <?= Html::a('Registar', ['/site/signup'], [
+                        'class' => 'login-action login-action-accent',
+                ]) ?>
+            <?php else: ?>
+                <?= Html::beginForm(['/site/logout'], 'post', [
+                        'class' => 'login-logout-form',
+                ]) ?>
+                <?= Html::submitButton('Sair', [
+                        'class' => 'login-action login-logout-button',
+                ]) ?>
+                <?= Html::endForm() ?>
+            <?php endif; ?>
+        </nav>
+    </div>
+
+    <nav class="login-main-nav" aria-label="Navegação principal">
+        <?= Html::a('Procurar', ['/animal/index'], ['class' => 'login-action']) ?>
+        <?= Html::a('Adotar', ['/animal/index'], ['class' => 'login-nav-link']) ?>
+        <?= Html::a('Anunciar', ['/anuncio/create'], ['class' => 'login-nav-link']) ?>
+        <?= Html::a('Associações', ['/associacao/index'], ['class' => 'login-nav-link']) ?>
+        <?= Html::a('Sobre', ['/site/about'], ['class' => 'login-nav-link']) ?>
+        <?= Html::a('FAQ', ['/site/faq'], ['class' => 'login-nav-link']) ?>
+    </nav>
 </header>

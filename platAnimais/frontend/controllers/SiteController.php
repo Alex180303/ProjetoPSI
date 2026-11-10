@@ -309,4 +309,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionFaq(): string
+    {
+        return $this->render('faq');
+    }
 }

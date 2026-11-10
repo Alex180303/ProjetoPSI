@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/auth.css',
     ];
     public $depends = [
         YiiAsset::class,

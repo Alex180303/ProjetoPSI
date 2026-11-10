@@ -1,8 +1,15 @@
 .auth-body {
+    min-height: 100vh;
     margin: 0;
     background: #101319;
+    color: #c5cee0;
 }
 
+.login-header,
+.login-footer {
+    background-color: #101319;
+    color: #c5cee0;
+}
 .login-page {
     display: flex;
     flex-direction: column;

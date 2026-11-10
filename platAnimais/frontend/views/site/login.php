@@ -17,41 +17,6 @@ $this->params['meta_keywords'] = 'entrar, login, adoção, animais, associaçõe
 
 ?>
 <div class="login-page">
-    <header class="login-header">
-        <div class="login-header-inner">
-            <a class="login-logo" href="<?= Url::home() ?>" aria-label="Página inicial">
-                <span class="login-logo-mark" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                        <circle cx="7" cy="7" r="2.2" fill="#7a4a0a"/>
-                        <circle cx="12" cy="5.5" r="2.2" fill="#7a4a0a"/>
-                        <circle cx="17" cy="7" r="2.2" fill="#7a4a0a"/>
-                        <path d="M12 11c-3 0-5.5 2.2-5.5 5 0 2 1.6 3.5 3.6 3.5h3.8c2 0 3.6-1.5 3.6-3.5 0-2.8-2.5-5-5.5-5Z" fill="#7a4a0a"/>
-                    </svg>
-                </span>
-                <span>Logo</span>
-            </a>
-
-            <nav class="login-header-actions" aria-label="Ações da conta">
-                <a class="login-action" href="#">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
-                        <path d="m16.5 16.5 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    <span>Procurar</span>
-                </a>
-                <?= Html::a('Entrar', ['site/login'], ['class' => 'login-action']) ?>
-                <?= Html::a('Registar', ['site/signup'], ['class' => 'login-action login-action-accent']) ?>
-            </nav>
-        </div>
-
-        <nav class="login-main-nav" aria-label="Navegação principal">
-            <?= Html::a('Adotar', ['site/index'], ['class' => 'login-nav-link']) ?>
-            <?= Html::a('Anunciar', ['site/signup'], ['class' => 'login-nav-link']) ?>
-            <?= Html::a('Associações', ['site/about'], ['class' => 'login-nav-link']) ?>
-            <?= Html::a('Sobre', ['site/about'], ['class' => 'login-nav-link']) ?>
-            <a class="login-nav-link" href="#">FAQ</a>
-        </nav>
-    </header>
 
     <div class="login-content">
         <div class="login-form-wrap">
@@ -69,13 +34,13 @@ $this->params['meta_keywords'] = 'entrar, login, adoção, animais, associaçõe
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'username', [
+            <?= $form->field($model, 'email', [
                 'inputOptions' => [
                     'class' => 'login-input',
-                    'autocomplete' => 'username',
+                    'autocomplete' => 'email',
                     'autofocus' => true,
                 ],
-            ])->textInput()->label('Email', ['class' => 'login-label']) ?>
+            ])->input('email')->label('Email', ['class' => 'login-label']) ?>
 
             <?= $form->field($model, 'password', [
                 'inputOptions' => [
@@ -107,26 +72,4 @@ $this->params['meta_keywords'] = 'entrar, login, adoção, animais, associaçõe
             </p>
         </div>
     </div>
-
-    <footer class="login-footer">
-        <div class="login-footer-inner">
-            <a class="login-logo" href="<?= Url::home() ?>" aria-label="Página inicial">
-                <span class="login-logo-mark" aria-hidden="true">
-                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                        <circle cx="7" cy="7" r="2.2" fill="#7a4a0a"/>
-                        <circle cx="12" cy="5.5" r="2.2" fill="#7a4a0a"/>
-                        <circle cx="17" cy="7" r="2.2" fill="#7a4a0a"/>
-                        <path d="M12 11c-3 0-5.5 2.2-5.5 5 0 2 1.6 3.5 3.6 3.5h3.8c2 0 3.6-1.5 3.6-3.5 0-2.8-2.5-5-5.5-5Z" fill="#7a4a0a"/>
-                    </svg>
-                </span>
-                <span>Logo</span>
-            </a>
-
-            <nav class="login-footer-links" aria-label="Ligações do rodapé">
-                <?= Html::a('Contacto', ['site/contact'], ['class' => 'login-footer-link']) ?>
-                <a class="login-footer-link" href="#">Privacidade</a>
-                <a class="login-footer-link" href="#">Termos &amp; Condições</a>
-            </nav>
-        </div>
-    </footer>
 </div>

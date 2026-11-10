@@ -12,7 +12,7 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public string $username = '';
+    public string $email = '';
     public string $password = '';
     public bool $rememberMe = true;
     private User|null $_user = null;
@@ -22,11 +22,19 @@ class LoginForm extends Model
     public function rules(): array
     {
         return [
-            // username and password are both required
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
+            // O email é obrigatório
+            ['email', 'required', 'message' => 'O email é obrigatório.'],
+
+            // Verifica se o valor tem um formato de email válido
+            ['email', 'email', 'message' => 'Indica um endereço de email válido.'],
+
+            // A palavra-passe é obrigatória
+            ['password', 'required', 'message' => 'A palavra-passe é obrigatória.'],
+
+            // Valida a opção de manter a sessão iniciada
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+
+            // Confirma se a palavra-passe corresponde à conta encontrada pelo email
             ['password', 'validatePassword'],
         ];
     }
@@ -71,9 +79,13 @@ class LoginForm extends Model
     protected function getUser(): User|null
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::findOne([
+                'email' => $this->email,
+                'status' => User::STATUS_ACTIVE,
+            ]);
         }
 
         return $this->_user;
     }
+
 }
