@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use common\models\Animal;
+use common\rbac\Rbac;
+use Yii;
 use backend\models\AnimalSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -34,17 +36,17 @@ class AnimalController extends Controller
                         [
                             'allow' => true,
                             'actions' => ['index', 'view'],
-                            'permissions' => ['animalConsultar'],
+                            'permissions' => [Rbac::ANIMAL_CONSULTAR],
                         ],
                         [
                             'allow' => true,
                             'actions' => ['create'],
-                            'permissions' => ['animalPublicar'],
+                            'permissions' => [Rbac::ANIMAL_PUBLICAR],
                         ],
                         [
                             'allow' => true,
                             'actions' => ['update', 'delete'],
-                            'permissions' => ['animalGerirTodos'],
+                            'permissions' => [Rbac::ANIMAL_GERIR_TODOS],
                         ],
                     ],
                     'denyCallback' => function ($rule, $action) {

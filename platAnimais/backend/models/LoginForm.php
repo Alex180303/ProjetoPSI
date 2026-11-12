@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace backend\models;
 
 use common\models\User;
+use common\rbac\Rbac;
+use Yii;
 
 /**
  * Formulário de autenticação do back-office.
@@ -53,6 +55,12 @@ final class LoginForm extends \common\models\LoginForm
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Nome de utilizador ou palavra-passe incorretos.');
+                return;
+            }
+
+            // Utilizadores só de front-office (ex.: adotantes) não entram no back-office
+            if (!Yii::$app->authManager->checkAccess($user->getId(), Rbac::BACKOFFICE_ACEDER)) {
+                $this->addError($attribute, 'Não tem permissão para aceder ao back-office.');
             }
         }
     }

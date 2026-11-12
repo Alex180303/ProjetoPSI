@@ -28,7 +28,7 @@ class RacaController extends Controller
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => [Rbac::GERIR_CATALOGO],
+                            'permissions' => [Rbac::GERIR_CATALOGO],
                         ],
                     ],
                 ],

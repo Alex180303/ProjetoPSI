@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use common\rbac\Rbac;
 use yii\rbac\DbManager;
 
 return [
@@ -17,9 +16,7 @@ return [
     'components' => [
         'authManager' => [
             'class' => DbManager::class,
-            // O papel "visitante" não é atribuído explicitamente: aplica-se a
-            // qualquer pedido não autenticado através da regra isGuest.
-            'defaultRoles' => [Rbac::ROLE_VISITANTE],
+            // Os papéis por omissão (visitante) são definidos apenas no frontend.
             // 'cache' => 'cache',
         ],
     ],

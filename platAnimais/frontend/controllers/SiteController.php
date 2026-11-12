@@ -50,8 +50,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
-//                        'roles' => [Rbac::REGISTAR_CONTA],
+                        'roles' => [Rbac::REGISTAR_CONTA],
                     ],
                     [
                         'actions' => ['about'],
@@ -314,5 +313,10 @@ class SiteController extends Controller
     public function actionFaq(): string
     {
         return $this->render('faq');
+    }
+
+    public function actionAnunciarAnimal(): string
+    {
+        return $this-> render('anunciarAnimal');
     }
 }

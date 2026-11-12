@@ -15,8 +15,16 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
+        ],
+        'authManager' => [
+            // O papel "visitante" aplica-se a pedidos não autenticados
+            // (a regra isGuest garante que não vale para quem tem sessão).
+            'defaultRoles' => [\common\rbac\Rbac::ROLE_VISITANTE],
         ],
         'user' => [
             'identityClass' => \common\models\User::class,

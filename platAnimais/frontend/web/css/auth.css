@@ -283,6 +283,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 2rem;
+    margin-left: auto;
 }
 
 .login-footer-link {
@@ -351,4 +352,10 @@
 /* Mensagens flash (Alert::widget) dentro do formulário */
 .login-form-wrap .alert {
     margin-bottom: 1.25rem;
+}
+
+.login-logo-image {
+    height: 70px;
+    width: auto;
+    display: block;
 }

@@ -11,7 +11,11 @@ $user = Yii::$app->user;
 <header class="login-header">
     <div class="login-header-inner">
         <?= Html::a(
-                '<span class="login-logo-mark" aria-hidden="true">🐾</span><span>Adote um amigo</span>',
+                Html::img(Yii::getAlias('@web/imagens/Logotipo.png'), [
+                        'alt' => '',
+                        'class' => 'login-logo-image',
+//                        'style' => 'height: 32px !important; width: auto !important;',
+                ]) . Html::tag('span', 'Petpanion', ['class' => 'login-logo-text']),
                 Url::home(),
                 [
                         'class' => 'login-logo',
@@ -42,7 +46,7 @@ $user = Yii::$app->user;
     <nav class="login-main-nav" aria-label="Navegação principal">
         <?= Html::a('Procurar', ['/animal/index'], ['class' => 'login-action']) ?>
         <?= Html::a('Adotar', ['/animal/index'], ['class' => 'login-nav-link']) ?>
-        <?= Html::a('Anunciar', ['/anuncio/create'], ['class' => 'login-nav-link']) ?>
+        <?= Html::a('Anunciar', ['/site/anunciar-animal'], ['class' => 'login-nav-link']) ?>
         <?= Html::a('Associações', ['/associacao/index'], ['class' => 'login-nav-link']) ?>
         <?= Html::a('Sobre', ['/site/about'], ['class' => 'login-nav-link']) ?>
         <?= Html::a('FAQ', ['/site/faq'], ['class' => 'login-nav-link']) ?>
