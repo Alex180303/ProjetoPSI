@@ -1,134 +1,153 @@
 <?php
-$this->title = 'Starter Page';
-$this->params['breadcrumbs'] = [['label' => $this->title]];
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+
+/* @var $this \yii\web\View */
+
+$this->title = 'Dashboard';
+
+$username = Yii::$app->user->isGuest ? 'Visitante' : Yii::$app->user->identity->username;
+
+$stats = [
+    [
+        'label' => 'Animais',
+        'value' => '128',
+        'icon' => 'fas fa-paw',
+        'class' => 'bg-info',
+        'url' => ['/animal/index'],
+    ],
+    [
+        'label' => 'Pedidos de adoção',
+        'value' => '36',
+        'icon' => 'fas fa-heart',
+        'class' => 'bg-success',
+        'url' => ['/adocao/index'],
+    ],
+    [
+        'label' => 'Associações',
+        'value' => '12',
+        'icon' => 'fas fa-building',
+        'class' => 'bg-warning',
+        'url' => ['/associacao/index'],
+    ],
+    [
+        'label' => 'Fichas de vacinação',
+        'value' => '74',
+        'icon' => 'fas fa-syringe',
+        'class' => 'bg-danger',
+        'url' => ['/ficha-clinica/index'],
+    ],
+];
+
+$recent = [
+    ['animal' => 'Boby', 'adotante' => 'Ana Silva', 'estado' => 'Pendente', 'badge' => 'warning', 'data' => '16/11/2026'],
+    ['animal' => 'Mimi', 'adotante' => 'Rui Costa', 'estado' => 'Aprovado', 'badge' => 'success', 'data' => '15/11/2026'],
+    ['animal' => 'Thor', 'adotante' => 'Marta Dias', 'estado' => 'Em análise', 'badge' => 'info', 'data' => '14/11/2026'],
+    ['animal' => 'Luna', 'adotante' => 'Pedro Nunes', 'estado' => 'Recusado', 'badge' => 'danger', 'data' => '13/11/2026'],
+];
 ?>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <?= \hail812\adminlte\widgets\Alert::widget([
-                'type' => 'success',
-                'body' => '<h3>Congratulations!</h3>',
-            ]) ?>
-            <?= \hail812\adminlte\widgets\Callout::widget([
-                'type' => 'danger',
-                'head' => 'I am a danger callout!',
-                'body' => 'There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.'
-            ]) ?>
+
+    <!-- Banner de boas-vindas -->
+    <div class="welcome-banner">
+        <div>
+            <h3 class="mb-1">Olá, <?= Html::encode($username) ?></h3>
+            <p class="mb-0">Bem-vindo ao back-office do PlatAnimais. Aqui podes gerir animais, associações e pedidos de adoção.</p>
         </div>
+        <i class="fas fa-paw welcome-banner-icon" aria-hidden="true"></i>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="row">
+        <?php foreach ($stats as $stat): ?>
+            <div class="col-lg-3 col-6">
+                <div class="small-box <?= $stat['class'] ?>">
+                    <div class="inner">
+                        <h3><?= Html::encode($stat['value']) ?></h3>
+                        <p><?= Html::encode($stat['label']) ?></p>
+                    </div>
+                    <div class="icon">
+                        <i class="<?= $stat['icon'] ?>"></i>
+                    </div>
+                    <a href="<?= Url::to($stat['url']) ?>" class="small-box-footer">
+                        Ver detalhes <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'CPU Traffic',
-                'number' => '10 <small>%</small>',
-                'icon' => 'fas fa-cog',
-            ]) ?>
+
+        <!-- Pedidos recentes -->
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pedidos de adoção recentes</h3>
+                    <div class="card-tools">
+                        <a href="<?= Url::to(['/adocao/index']) ?>" class="btn btn-tool">
+                            Ver todos <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped table-valign-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Animal</th>
+                                <th>Adotante</th>
+                                <th>Estado</th>
+                                <th class="text-right">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($recent as $row): ?>
+                                <tr>
+                                    <td><?= Html::encode($row['animal']) ?></td>
+                                    <td><?= Html::encode($row['adotante']) ?></td>
+                                    <td><span class="badge badge-<?= $row['badge'] ?>"><?= Html::encode($row['estado']) ?></span></td>
+                                    <td class="text-right text-muted"><?= Html::encode($row['data']) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
+        <!-- Progresso -->
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Estado do sistema</h3>
+                </div>
+                <div class="card-body">
+
+                    <p class="mb-1">Pedidos analisados</p>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-success" style="width: 72%"></div>
+                    </div>
+
+                    <p class="mb-1">Fichas de vacinação completas</p>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-info" style="width: 58%"></div>
+                    </div>
+
+                    <p class="mb-1">Animais com associação atribuída</p>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-warning" style="width: 41%"></div>
+                    </div>
+
+                    <p class="mb-1">Utilizadores ativos</p>
+                    <div class="progress progress-sm mb-0">
+                        <div class="progress-bar bg-danger" style="width: 85%"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-md-4 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Messages',
-                'number' => '1,410',
-                'icon' => 'far fa-envelope',
-            ]) ?>
-        </div>
-        <div class="col-md-4 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Bookmarks',
-                'number' => '410',
-                 'theme' => 'success',
-                'icon' => 'far fa-flag',
-            ]) ?>
-        </div>
-        <div class="col-md-4 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Uploads',
-                'number' => '13,648',
-                'theme' => 'gradient-warning',
-                'icon' => 'far fa-copy',
-            ]) ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Bookmarks',
-                'number' => '41,410',
-                'icon' => 'far fa-bookmark',
-                'progress' => [
-                    'width' => '70%',
-                    'description' => '70% Increase in 30 Days'
-                ]
-            ]) ?>
-        </div>
-        <div class="col-md-4 col-sm-6 col-12">
-            <?php $infoBox = \hail812\adminlte\widgets\InfoBox::begin([
-                'text' => 'Likes',
-                'number' => '41,410',
-                'theme' => 'success',
-                'icon' => 'far fa-thumbs-up',
-                'progress' => [
-                    'width' => '70%',
-                    'description' => '70% Increase in 30 Days'
-                ]
-            ]) ?>
-            <?= \hail812\adminlte\widgets\Ribbon::widget([
-                'id' => $infoBox->id.'-ribbon',
-                'text' => 'Ribbon',
-            ]) ?>
-            <?php \hail812\adminlte\widgets\InfoBox::end() ?>
-        </div>
-        <div class="col-md-4 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Events',
-                'number' => '41,410',
-                'theme' => 'gradient-warning',
-                'icon' => 'far fa-calendar-alt',
-                'progress' => [
-                    'width' => '70%',
-                    'description' => '70% Increase in 30 Days'
-                ],
-                'loadingStyle' => true
-            ]) ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\SmallBox::widget([
-                'title' => '150',
-                'text' => 'New Orders',
-                'icon' => 'fas fa-shopping-cart',
-            ]) ?>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <?php $smallBox = \hail812\adminlte\widgets\SmallBox::begin([
-                'title' => '150',
-                'text' => 'New Orders',
-                'icon' => 'fas fa-shopping-cart',
-                'theme' => 'success'
-            ]) ?>
-            <?= \hail812\adminlte\widgets\Ribbon::widget([
-                'id' => $smallBox->id.'-ribbon',
-                'text' => 'Ribbon',
-                'theme' => 'warning',
-                'size' => 'lg',
-                'textSize' => 'lg'
-            ]) ?>
-            <?php \hail812\adminlte\widgets\SmallBox::end() ?>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <?= \hail812\adminlte\widgets\SmallBox::widget([
-                'title' => '44',
-                'text' => 'User Registrations',
-                'icon' => 'fas fa-user-plus',
-                'theme' => 'gradient-success',
-                'loadingStyle' => true
-            ]) ?>
-        </div>
-    </div>
 </div>

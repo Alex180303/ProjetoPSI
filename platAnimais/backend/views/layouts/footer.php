@@ -1,7 +1,8 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>&copy; <?= date('Y') ?> PlatAnimais.</strong>
+    Todos os direitos reservados.
+
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.1.0
+        <b>Backoffice</b>
     </div>
 </footer>
