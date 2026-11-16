@@ -25,6 +25,15 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/auth.css',
+        // CSS do template
+        'template/lib/animate/animate.min.css',
+        'template/lib/owlcarousel/assets/owl.carousel.min.css',
+        'template/css/style.css',
+    ];
+    public $js = [
+        'template/lib/wow/wow.min.js',
+        'template/lib/owlcarousel/owl.carousel.min.js',
+        'template/js/main.js',
     ];
     public $depends = [
         YiiAsset::class,
