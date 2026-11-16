@@ -52,13 +52,13 @@ $user = Yii::$app->user;
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-            <?= Html::a('Início', ['/site/index'], ['class' => 'nav-item nav-link active']) ?>
-            <?= Html::a('Procurar', ['/animal/index'], ['class' => 'nav-item nav-link']) ?>
-            <?= Html::a('Adotar', ['/animal/index'], ['class' => 'nav-item nav-link']) ?>
-            <?= Html::a('Anunciar', ['/site/anunciar-animal'], ['class' => 'nav-item nav-link']) ?>
-            <?= Html::a('Associações', ['/associacao/index'], ['class' => 'nav-item nav-link']) ?>
-            <?= Html::a('Sobre', ['/site/about'], ['class' => 'nav-item nav-link']) ?>
-            <?= Html::a('FAQ', ['/site/faq'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('Início', ['#'], ['class' => 'nav-item nav-link active']) ?>
+            <?= Html::a('Procurar', ['#'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('Adotar', ['#'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('Anunciar', ['#'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('Associações', ['#'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('Sobre', ['#'], ['class' => 'nav-item nav-link']) ?>
+            <?= Html::a('FAQ', ['#'], ['class' => 'nav-item nav-link']) ?>
 
             <?php if ($user->isGuest): ?>
                 <?= Html::a('Entrar', ['/site/login'], ['class' => 'nav-item nav-link']) ?>
