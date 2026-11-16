@@ -7,6 +7,7 @@
 $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 \hail812\adminlte3\assets\PluginAsset::register($this)->add(['fontawesome', 'icheck-bootstrap']);
+$this->registerCssFile('@web/css/theme.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

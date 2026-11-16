@@ -1,0 +1,165 @@
+/* ==========================================================================
+   PlatAnimais - Back-office theme (AdminLTE 3 overrides)
+   Cores da marca: azul #40B3D8 · verde #83C933
+   ========================================================================== */
+
+:root {
+    --pa-blue: #40B3D8;
+    --pa-blue-dark: #3a9cbd;
+    --pa-green: #83C933;
+    --pa-green-dark: #6fb32a;
+    --pa-ink: #1f2a37;
+}
+
+/* Sidebar ---------------------------------------------------------------- */
+.main-sidebar.sidebar-dark-primary {
+    background-color: var(--pa-ink);
+}
+
+.sidebar-dark-primary .brand-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.brand-icon {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.brand-link .brand-text {
+    font-weight: 600 !important;
+    letter-spacing: .02em;
+}
+
+.sidebar-dark-primary .user-panel .user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pa-blue), var(--pa-green));
+    color: #fff;
+    font-size: .95rem;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background: linear-gradient(135deg, var(--pa-blue), var(--pa-green)) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(64, 179, 216, .35);
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link:hover {
+    background-color: rgba(255, 255, 255, .06);
+    color: #fff;
+}
+
+.sidebar-dark-primary .nav-header {
+    color: rgba(255, 255, 255, .45);
+    letter-spacing: .08em;
+}
+
+/* Topbar ----------------------------------------------------------------- */
+.main-header.navbar {
+    border-bottom: 2px solid var(--pa-blue);
+}
+
+.main-header .nav-link {
+    color: #4b5563;
+}
+
+.main-header .nav-link:hover {
+    color: var(--pa-blue-dark);
+}
+
+.navbar-badge {
+    background-color: var(--pa-green);
+    color: #fff;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--pa-blue), var(--pa-blue-dark));
+    border-color: var(--pa-blue-dark);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: var(--pa-blue-dark);
+    border-color: var(--pa-blue-dark);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--pa-green), var(--pa-green-dark));
+    border-color: var(--pa-green-dark);
+}
+
+/* Small boxes ------------------------------------------------------------ */
+.small-box.bg-info {
+    background-color: var(--pa-blue) !important;
+}
+
+.small-box.bg-success {
+    background-color: var(--pa-green) !important;
+}
+
+.small-box > .small-box-footer {
+    background-color: rgba(0, 0, 0, .08);
+}
+
+/* Dashboard welcome banner ---------------------------------------------- */
+.welcome-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.5rem 1.75rem;
+    border-radius: .75rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--pa-blue) 0%, var(--pa-blue-dark) 45%, var(--pa-green) 100%);
+    margin-bottom: 1.25rem;
+}
+
+.welcome-banner h3 {
+    color: #fff;
+    font-weight: 700;
+}
+
+.welcome-banner p {
+    opacity: .9;
+}
+
+.welcome-banner-icon {
+    font-size: 4.5rem;
+    opacity: .22;
+    line-height: 1;
+}
+
+/* Cards ------------------------------------------------------------------ */
+.card {
+    border-radius: .6rem;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+/* Login ------------------------------------------------------------------ */
+.login-page {
+    background: linear-gradient(135deg, var(--pa-blue) 0%, var(--pa-blue-dark) 45%, var(--pa-green) 100%);
+}
+
+.login-logo a,
+.login-logo b {
+    color: #fff;
+}
+
+.login-card-body {
+    border-radius: .6rem;
+}
