@@ -127,34 +127,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/itemPedidos"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp" />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="16dp"
-                                android:text="Os meus pedidos"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp" />
-                        </LinearLayout>
-
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -225,34 +197,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="?attr/colorOutlineVariant" />
-
-                        <LinearLayout
-                            android:id="@+id/itemAssociacoes"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp" />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="16dp"
-                                android:text="Associações"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp" />
-                        </LinearLayout>
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

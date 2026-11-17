@@ -59,10 +59,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AssociacoesActivity"
-            android:exported="false"
-            android:parentActivityName=".PerfilActivity"
-            android:theme="@style/Theme.App.WithActionBar"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="false"/>
         <activity
             android:name=".PedirAdocaoActivity"
             android:exported="false"
@@ -70,10 +67,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".PedidosActivity"
-            android:exported="false"
-            android:parentActivityName=".PerfilActivity"
-            android:theme="@style/Theme.App.WithActionBar"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="false" />
     </application>
 
 </manifest>
