@@ -4,11 +4,21 @@
         android:id="@+id/nav_main"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Início" />
+
+    <item
+        android:id="@+id/nav_associacoes"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Associações" />
     <item
         android:id="@+id/nav_publicar"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Publicar" />
 
+
+    <item
+        android:id="@+id/nav_meusPedidos"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Pedidos" />
 
     <item
         android:id="@+id/nav_prefile"

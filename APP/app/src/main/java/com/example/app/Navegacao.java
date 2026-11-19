@@ -24,8 +24,12 @@ public class Navegacao {
             Class<?> destino = null;
             if (id == R.id.nav_main) {
                 destino = MainActivity.class;
+            } else if (id == R.id.nav_associacoes) {
+                destino = AssociacoesActivity.class;
             } else if (id == R.id.nav_publicar) {
                 destino = PublicarActivity.class;
+            } else if (id == R.id.nav_meusPedidos) {
+                destino = PedidosActivity.class;
             } else if (id == R.id.nav_prefile) {
                 destino = PerfilActivity.class;
             }

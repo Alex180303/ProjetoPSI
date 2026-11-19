@@ -20,5 +20,8 @@ public class AssociacoesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        com.google.android.material.bottomnavigation.BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        Navegacao.configurar(this, bottomNav, R.id.nav_associacoes);
     }
 }

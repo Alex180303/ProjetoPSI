@@ -34,17 +34,12 @@ public class PerfilActivity extends AppCompatActivity {
             return insets;
         });
 
-        binding.itemPedidos.setOnClickListener(v ->
-                startActivity(new Intent(PerfilActivity.this, PedidosActivity.class)));
-
         binding.itemDescontos.setOnClickListener(v ->
                 startActivity(new Intent(PerfilActivity.this, DescontosActivity.class)));
 
         binding.itemNotificacoes.setOnClickListener(v ->
                 startActivity(new Intent(PerfilActivity.this, NotificacaoActivity.class)));
 
-        binding.itemAssociacoes.setOnClickListener(v ->
-                startActivity(new Intent(PerfilActivity.this, AssociacoesActivity.class)));
 
         Navegacao.configurar(this, binding.bottomNavigation, R.id.nav_prefile);
 
