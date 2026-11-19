@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EspecieController implements the CRUD actions for Especie model.
+ * Controlador CRUD de Espécies no backend.
+ *
+ * Gere o catálogo de espécies de animais.
+ * Acesso restrito por RBAC à permissão de gestão de catálogo.
  */
 class EspecieController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer GERIR_CATALOGO.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -42,11 +48,7 @@ class EspecieController extends Controller
         );
     }
 
-    /**
-     * Lists all Especie models.
-     *
-     * @return string
-     */
+    /** Lista espécies com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new EspecieSearch();
@@ -58,12 +60,7 @@ class EspecieController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Especie model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de uma espécie. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -71,11 +68,7 @@ class EspecieController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Especie model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria uma nova espécie. */
     public function actionCreate()
     {
         $model = new Especie();
@@ -93,13 +86,7 @@ class EspecieController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Especie model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza uma espécie existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +100,7 @@ class EspecieController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Especie model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove uma espécie. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +108,7 @@ class EspecieController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Especie model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Especie the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo Especie por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = Especie::findOne(['id' => $id])) !== null) {

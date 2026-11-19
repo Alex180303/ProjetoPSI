@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina para pedir reposicao de password (solicita envio de token).
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -64,7 +71,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         <p class="text-body-secondary small">A link to reset your password will be sent to your email</p>
                     </div>
 
-                    <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página para pedir reposição de password (solicita envio de token).
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
                     <div class="mb-4">
                         <?= $form->field($model, 'email', [
@@ -87,7 +101,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         ) ?>
                     </div>
 
-                    <?php ActiveForm::end(); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página para pedir reposição de password (solicita envio de token).
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
                     <div class="text-body-secondary text-center mt-3 small">
                         Remember your password? <?= Html::a('Login', ['site/login']) ?>

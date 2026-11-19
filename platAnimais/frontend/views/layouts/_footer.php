@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_footer.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial reutilizavel de rodape incluido nos layouts.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 
@@ -8,7 +15,14 @@ use yii\helpers\Url;
 
 <footer class="login-footer">
     <div class="login-footer-inner">
-<!--        --><?php //= Html::a(
+<!--        --><?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_footer.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial reutilizável de rodapé incluído nos layouts.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ //= Html::a(
 //                Html::img(Yii::getAlias('@web/imagens/Logotipo.png'),
 //                ['alt' => '',
 //                'class' => 'login-logo-image',

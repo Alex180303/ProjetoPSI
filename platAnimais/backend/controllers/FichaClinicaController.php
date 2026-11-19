@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * FichaClinicaController implements the CRUD actions for FichaClinica model.
+ * Controlador CRUD de Fichas Clínicas no backend.
+ *
+ * Gere registos clínicos/saúde associados aos animais.
+ * O acesso é diferenciado por ação: consulta exige SAUDE_CONSULTAR; criação/edição/remoção exigem SAUDE_GERIR_PROPRIOS.
  */
 class FichaClinicaController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: regras RBAC distintas para leitura e escrita.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -27,11 +33,13 @@ class FichaClinicaController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
+                            // Leitura: listagem e visualização de fichas clínicas.
                             'allow' => true,
                             'actions' => ['index', 'view'],
                             'permissions' => [Rbac::SAUDE_CONSULTAR],
                         ],
                         [
+                            // Escrita: criar, atualizar e eliminar fichas clínicas (contexto dos próprios registos, conforme regra de negócio/permissão).
                             'allow' => true,
                             'actions' => ['create', 'update', 'delete'],
                             'permissions' => [Rbac::SAUDE_GERIR_PROPRIOS],
@@ -48,11 +56,7 @@ class FichaClinicaController extends Controller
         );
     }
 
-    /**
-     * Lists all FichaClinica models.
-     *
-     * @return string
-     */
+    /** Lista fichas clínicas com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new FichaClinicaSearch();
@@ -64,12 +68,7 @@ class FichaClinicaController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single FichaClinica model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de uma ficha clínica. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -77,11 +76,7 @@ class FichaClinicaController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new FichaClinica model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria uma nova ficha clínica. */
     public function actionCreate()
     {
         $model = new FichaClinica();
@@ -99,13 +94,7 @@ class FichaClinicaController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing FichaClinica model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza uma ficha clínica existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -119,13 +108,7 @@ class FichaClinicaController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing FichaClinica model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove uma ficha clínica. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -133,13 +116,7 @@ class FichaClinicaController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the FichaClinica model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return FichaClinica the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo FichaClinica por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = FichaClinica::findOne(['id' => $id])) !== null) {

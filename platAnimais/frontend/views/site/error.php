@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\error.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina de erro: exibe detalhes/mensagem de erros tratados pelo error handler da aplicacao.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 

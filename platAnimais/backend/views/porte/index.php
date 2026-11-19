@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\porte\index.php
+ *
+ * View do controller 'porte' (backend CRUD).
+ * Listagem de registos: inclui pesquisa/filtros e grelha com acoes de gestao.
+ * Responsabilidade: apresentar dados e interacoes de UI recorrendo a widgets/helpers do Yii2.
+ */
 
 use common\models\Porte;
 use yii\helpers\Html;
@@ -21,7 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Porte', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\porte\index.php
+ *
+ * View do controller 'porte' (backend CRUD).
+ * Listagem de registos: inclui pesquisa/filtros e grelha com ações de gestão.
+ * Responsabilidade: apresentar dados e interações de UI recorrendo a widgets/helpers do Yii2.
+ */ // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

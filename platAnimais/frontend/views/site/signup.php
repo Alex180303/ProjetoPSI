@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\signup.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina de registo de conta de utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -20,7 +27,14 @@ $this->params['meta_keywords'] = 'registar, criar conta, adoção, animais, asso
         <div class="login-form-wrap">
             <h1 class="login-title">Registar</h1>
 
-            <?php $form = ActiveForm::begin([
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\signup.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de registo de conta de utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin([
                     'id' => 'form-signup',
                     'options' => ['class' => 'login-form'],
                     'fieldConfig' => [
@@ -59,7 +73,14 @@ $this->params['meta_keywords'] = 'registar, criar conta, adoção, animais, asso
                     'name' => 'signup-button',
             ]) ?>
 
-            <?php ActiveForm::end(); ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\signup.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de registo de conta de utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
             <p class="login-signup">
                 Já tem conta?

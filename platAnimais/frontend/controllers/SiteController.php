@@ -24,10 +24,19 @@ use yii\web\ErrorAction;
 use yii\web\Response;
 
 /**
- * Site controller
+ * Controlador principal do frontend (site público e área de utilizador).
+ *
+ * Responsável por páginas públicas (home, about, faq, contacto), autenticação
+ * (login/logout), registo, verificação de email e recuperação de password.
+ *
+ * Integra RBAC através de AccessControl (ex.: permissões para registar conta e consultar associações)
+ * e utiliza formulários/modelos do frontend para validar e processar dados submetidos pelo utilizador.
  */
 class SiteController extends Controller
 {
+    /**
+     * Injeta o serviço de envio de email para ser usado nas ações que enviam notificações/mensagens.
+     */
     public function __construct(
         $id,
         $module,
@@ -39,25 +48,33 @@ class SiteController extends Controller
 
     /**
      * {@inheritdoc}
+     *
+     * Define filtros de comportamento:
+     * - AccessControl: regras de acesso por ação (RBAC/permissões e utilizadores autenticados).
+     * - VerbFilter: restringe métodos HTTP permitidos (ex.: logout apenas via POST).
      */
     public function behaviors(): array
     {
         return [
             'access' => [
                 'class' => AccessControl::class,
+                // Apenas estas ações são alvo das regras abaixo; as restantes ficam acessíveis por omissão.
                 'only' => ['logout', 'signup', 'about'],
                 'rules' => [
                     [
+                        // Registo: permitido a utilizadores com a permissão REGISTAR_CONTA (tipicamente visitantes).
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => [Rbac::REGISTAR_CONTA],
                     ],
                     [
+                        // Página "about": requer permissão para consultar associações.
                         'actions' => ['about'],
                         'allow' => true,
                         'roles' => [Rbac::CONSULTAR_ASSOCIACAO],
                     ],
                     [
+                        // Logout: apenas utilizadores autenticados ('@').
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -67,6 +84,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
+                    // Evita logout por GET (proteção básica contra CSRF/ações acidentais).
                     'logout' => ['post'],
                 ],
             ],
@@ -75,6 +93,10 @@ class SiteController extends Controller
 
     /**
      * {@inheritdoc}
+     *
+     * Declara ações independentes fornecidas por classes do Yii:
+     * - error: renderização centralizada de erros;
+     * - captcha: geração/validação de captcha em formulários.
      */
     public function actions(): array
     {
@@ -84,26 +106,28 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => CaptchaAction::class,
+                // Código fixo em ambiente de testes para facilitar automação.
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
 
     /**
-     * Displays homepage.
+     * Página inicial (homepage) do frontend.
      *
-     * @return string
+     * Usa um layout específico (`main-home`) para a apresentação da landing page.
      */
     public function actionIndex(): string
     {
-        $this->layout = 'main-home'; //template
+        $this->layout = 'main-home'; // template da homepage
         return $this->render('index');
     }
 
     /**
-     * Logs in a user.
+     * Autentica um utilizador com base nas credenciais submetidas.
      *
-     * @return string|Response
+     * Se já estiver autenticado, redireciona para a home.
+     * Em caso de sucesso no login, volta para a página anterior (goBack).
      */
     public function actionLogin(): string|Response
     {
@@ -113,10 +137,12 @@ class SiteController extends Controller
 
         $model = new LoginForm();
 
+        // Carrega dados do POST e tenta autenticar.
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
+        // Limpa a password antes de reenviar o formulário para a view (segurança/UX).
         $model->password = '';
 
         return $this->render('login', [
@@ -125,9 +151,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Logs out the current user.
-     *
-     * @return Response
+     * Termina a sessão do utilizador autenticado e redireciona para a home.
      */
     public function actionLogout(): Response
     {
@@ -137,15 +161,17 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays contact page.
+     * Página de contacto.
      *
-     * @return string|Response
+     * Valida o formulário e envia email através do mailer configurado; mostra mensagens flash
+     * com o resultado da operação.
      */
     public function actionContact(): string|Response
     {
         $model = new ContactForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // Envia email para o administrador usando remetente definido nos parâmetros.
             $sent = $model->sendEmail(
                 $this->mailer,
                 Yii::$app->params['adminEmail'],
@@ -168,9 +194,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
-     *
-     * @return string
+     * Página "Sobre" / informações sobre associações (sujeita a permissão configurada em behaviors).
      */
     public function actionAbout(): string
     {
@@ -178,14 +202,15 @@ class SiteController extends Controller
     }
 
     /**
-     * Signs user up.
+     * Registo de novo utilizador.
      *
-     * @return string|Response
+     * Em caso de sucesso, cria/regista a conta (conforme lógica do SignupForm) e envia email de verificação.
      */
     public function actionSignup(): string|Response
     {
         $model = new SignupForm();
 
+        // Carrega e processa o registo; o modelo pode também enviar o email de verificação.
         $signed = $model->load(Yii::$app->request->post()) && $model->signup(
             $this->mailer,
             Yii::$app->params['supportEmail'],
@@ -203,9 +228,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Requests password reset.
-     *
-     * @return string|Response
+     * Solicita envio de email para reposição de password.
      */
     public function actionRequestPasswordReset(): string|Response
     {
@@ -233,15 +256,15 @@ class SiteController extends Controller
     }
 
     /**
-     * Resets password.
+     * Define uma nova password a partir de um token de reposição válido.
      *
-     * @param string $token
-     * @return string|Response
-     * @throws BadRequestHttpException
+     * @param string $token Token recebido por email.
+     * @throws BadRequestHttpException Se o token for inválido/expirado.
      */
     public function actionResetPassword(string $token): string|Response
     {
         try {
+            // O modelo valida o token no construtor; token inválido gera exceção.
             $model = new ResetPasswordForm($token);
         } catch (InvalidArgumentException $e) {
             throw new BadRequestHttpException($e->getMessage());
@@ -259,11 +282,10 @@ class SiteController extends Controller
     }
 
     /**
-     * Verify email address
+     * Verifica o email do utilizador através do token enviado no registo.
      *
-     * @param string $token
-     * @return Response
-     * @throws BadRequestHttpException
+     * @param string $token Token de verificação.
+     * @throws BadRequestHttpException Se o token for inválido.
      */
     public function actionVerifyEmail(string $token): Response
     {
@@ -283,9 +305,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Resend verification email
-     *
-     * @return string|Response
+     * Reenvia o email de verificação para contas ainda não verificadas.
      */
     public function actionResendVerificationEmail(): string|Response
     {
@@ -311,13 +331,19 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Página de perguntas frequentes (FAQ).
+     */
     public function actionFaq(): string
     {
         return $this->render('faq');
     }
 
+    /**
+     * Página/formulário para anunciar um animal (vista estática/formulário no frontend).
+     */
     public function actionAnunciarAnimal(): string
     {
-        return $this-> render('anunciarAnimal');
+        return $this->render('anunciarAnimal');
     }
 }

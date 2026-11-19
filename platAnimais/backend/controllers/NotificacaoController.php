@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * NotificacaoController implements the CRUD actions for Notificacao model.
+ * Controlador CRUD de Notificações no backend.
+ *
+ * Gere notificações do sistema (criação, consulta e manutenção).
+ * Acesso restrito à permissão de configuração do sistema.
  */
 class NotificacaoController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer CONFIGURAR_SISTEMA.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -42,11 +48,7 @@ class NotificacaoController extends Controller
         );
     }
 
-    /**
-     * Lists all Notificacao models.
-     *
-     * @return string
-     */
+    /** Lista notificações com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new NotificacaoSearch();
@@ -58,12 +60,7 @@ class NotificacaoController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Notificacao model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de uma notificação. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -71,11 +68,7 @@ class NotificacaoController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Notificacao model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria uma nova notificação. */
     public function actionCreate()
     {
         $model = new Notificacao();
@@ -93,13 +86,7 @@ class NotificacaoController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Notificacao model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza uma notificação existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +100,7 @@ class NotificacaoController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Notificacao model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove uma notificação. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +108,7 @@ class NotificacaoController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Notificacao model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Notificacao the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo Notificacao por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = Notificacao::findOne(['id' => $id])) !== null) {

@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DescontoController implements the CRUD actions for Desconto model.
+ * Controlador CRUD de Descontos no backend.
+ *
+ * Gere regras/registos de descontos do sistema (configuração).
+ * Acesso limitado a utilizadores com permissão de configuração do sistema.
  */
 class DescontoController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer CONFIGURAR_SISTEMA para todas as ações.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -43,9 +49,7 @@ class DescontoController extends Controller
     }
 
     /**
-     * Lists all Desconto models.
-     *
-     * @return string
+     * Lista descontos com filtros de pesquisa.
      */
     public function actionIndex()
     {
@@ -59,10 +63,10 @@ class DescontoController extends Controller
     }
 
     /**
-     * Displays a single Desconto model.
+     * Mostra detalhes de um desconto.
+     *
      * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -72,9 +76,7 @@ class DescontoController extends Controller
     }
 
     /**
-     * Creates a new Desconto model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * Cria um novo desconto.
      */
     public function actionCreate()
     {
@@ -94,11 +96,10 @@ class DescontoController extends Controller
     }
 
     /**
-     * Updates an existing Desconto model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Atualiza um desconto existente.
+     *
      * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -114,11 +115,10 @@ class DescontoController extends Controller
     }
 
     /**
-     * Deletes an existing Desconto model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Remove um desconto.
+     *
      * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -128,11 +128,11 @@ class DescontoController extends Controller
     }
 
     /**
-     * Finds the Desconto model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Carrega o modelo Desconto pelo ID ou lança 404.
+     *
      * @param int $id ID
-     * @return Desconto the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Desconto
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {

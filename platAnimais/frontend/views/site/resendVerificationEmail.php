@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\resendVerificationEmail.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina para reenviar o email de verificacao da conta.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -64,7 +71,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         <p class="text-body-secondary small">Enter your email to receive a new verification link</p>
                     </div>
 
-                    <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\resendVerificationEmail.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página para reenviar o email de verificação da conta.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
 
                     <div class="mb-4">
                         <?= $form->field($model, 'email', [
@@ -87,7 +101,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         ) ?>
                     </div>
 
-                    <?php ActiveForm::end(); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\resendVerificationEmail.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página para reenviar o email de verificação da conta.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
                     <div class="text-body-secondary text-center mt-3 small">
                         Already verified? <?= Html::a('Login', ['site/login']) ?>

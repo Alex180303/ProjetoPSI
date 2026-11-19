@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\adocao\create.php
+ *
+ * View do controller 'adocao' (backend CRUD).
+ * Ecra de criacao de um novo registo (usa o formulario parcial quando aplicavel).
+ * Responsabilidade: apresentar dados e interacoes de UI recorrendo a widgets/helpers do Yii2.
+ */
 
 use yii\helpers\Html;
 

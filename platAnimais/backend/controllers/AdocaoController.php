@@ -11,12 +11,19 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdocaoController implements the CRUD actions for Adocao model.
+ * Controlador CRUD de Adoções no backend.
+ *
+ * Permite gerir pedidos/registos de adoção (listar, ver, criar, editar, remover).
+ * Acesso protegido por RBAC: requer a permissão para avaliar candidaturas.
  */
 class AdocaoController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * Behaviors:
+     * - AccessControl: restringe todas as ações deste controlador a utilizadores com CANDIDATURA_AVALIAR.
+     * - VerbFilter: obriga a que a eliminação seja feita via POST.
      */
     public function behaviors()
     {
@@ -27,6 +34,7 @@ class AdocaoController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
+                            // Qualquer ação do controlador exige permissão de avaliação de candidaturas.
                             'allow' => true,
                             'permissions' => [Rbac::CANDIDATURA_AVALIAR],
                         ],
@@ -43,9 +51,7 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Lists all Adocao models.
-     *
-     * @return string
+     * Lista todos os modelos Adocao com suporte a pesquisa/filtros.
      */
     public function actionIndex()
     {
@@ -59,10 +65,10 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Displays a single Adocao model.
+     * Mostra os detalhes de um registo de adoção.
+     *
      * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionView($id)
     {
@@ -72,9 +78,8 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Creates a new Adocao model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * Cria um novo registo de adoção.
+     * Em caso de sucesso, redireciona para a view do registo criado.
      */
     public function actionCreate()
     {
@@ -94,11 +99,10 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Updates an existing Adocao model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Atualiza um registo de adoção existente.
+     *
      * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionUpdate($id)
     {
@@ -114,11 +118,10 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Deletes an existing Adocao model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Remove um registo de adoção e redireciona para a listagem.
+     *
      * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionDelete($id)
     {
@@ -128,11 +131,11 @@ class AdocaoController extends Controller
     }
 
     /**
-     * Finds the Adocao model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Localiza o modelo Adocao pelo ID; lança 404 se não encontrado.
+     *
      * @param int $id ID
-     * @return Adocao the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Adocao
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {

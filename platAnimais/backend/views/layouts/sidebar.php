@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\sidebar.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial da barra lateral/menu de navegacao do backoffice.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 use yii\helpers\Html;
 use yii\helpers\Url;

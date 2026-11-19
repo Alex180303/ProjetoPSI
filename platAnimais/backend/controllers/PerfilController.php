@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PerfilController implements the CRUD actions for Perfil model.
+ * Controlador CRUD de Perfis de utilizador no backend.
+ *
+ * Permite à administração consultar e gerir perfis de utilizadores.
+ * Acesso condicionado à permissão de gestão de utilizadores.
  */
 class PerfilController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer UTILIZADOR_GERIR.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -42,11 +48,7 @@ class PerfilController extends Controller
         );
     }
 
-    /**
-     * Lists all Perfil models.
-     *
-     * @return string
-     */
+    /** Lista perfis com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new PerfilSearch();
@@ -58,12 +60,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Perfil model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de um perfil. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -71,11 +68,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Perfil model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria um novo perfil. */
     public function actionCreate()
     {
         $model = new Perfil();
@@ -93,13 +86,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Perfil model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza um perfil existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +100,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Perfil model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove um perfil. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +108,7 @@ class PerfilController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Perfil model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Perfil the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo Perfil por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = Perfil::findOne(['id' => $id])) !== null) {

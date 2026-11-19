@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Layout da homepage do frontend, com composicao visual especifica da pagina inicial.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 
@@ -19,25 +26,60 @@ $this->registerLinkTag([
     'href' => Yii::getAlias('@web/imagens/Logotipo.png'),
 ]);
 ?>
-<?php $this->beginPage() ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ $this->beginBody() ?>
 
 <?= $this->render('_home_header') ?>
 
-<?php foreach (Yii::$app->session->getAllFlashes() as $tipo => $mensagem): ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ foreach (Yii::$app->session->getAllFlashes() as $tipo => $mensagem): ?>
     <div class="container mt-3">
         <div class="alert alert-<?= Html::encode($tipo === 'error' ? 'danger' : $tipo) ?>" role="alert">
             <?= Html::encode(is_array($mensagem) ? implode(' ', $mensagem) : $mensagem) ?>
         </div>
     </div>
-<?php endforeach; ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ endforeach; ?>
 
 <?= $content ?>
 
@@ -45,7 +87,21 @@ $this->registerLinkTag([
 
 <a href="#" class="btn btn-primary py-3 fs-4 back-to-top" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"></i></a>
 
-<?php $this->endBody() ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\main-home.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Layout da homepage do frontend, com composição visual específica da página inicial.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ $this->endPage() ?>

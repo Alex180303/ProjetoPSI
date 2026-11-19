@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_home_header.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial de cabecalho especifico do layout/home do frontend.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 
@@ -60,18 +67,39 @@ $user = Yii::$app->user;
             <?= Html::a('Sobre', ['#'], ['class' => 'nav-item nav-link']) ?>
             <?= Html::a('FAQ', ['#'], ['class' => 'nav-item nav-link']) ?>
 
-            <?php if ($user->isGuest): ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_home_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial de cabeçalho específico do layout/home do frontend.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ if ($user->isGuest): ?>
                 <?= Html::a('Entrar', ['/site/login'], ['class' => 'nav-item nav-link']) ?>
                 <?= Html::a('Registar <i class="bi bi-arrow-right"></i>', ['/site/signup'], [
                     'class' => 'nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-3',
                 ]) ?>
-            <?php else: ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_home_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial de cabeçalho específico do layout/home do frontend.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ else: ?>
                 <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex']) ?>
                 <?= Html::submitButton('Sair (' . Html::encode($user->identity->username) . ')', [
                     'class' => 'nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-3 border-0',
                 ]) ?>
                 <?= Html::endForm() ?>
-            <?php endif; ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_home_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial de cabeçalho específico do layout/home do frontend.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ endif; ?>
         </div>
     </div>
 </nav>

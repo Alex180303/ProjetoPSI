@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\anunciarAnimal.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina/formulario para anunciar um animal no frontend.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 

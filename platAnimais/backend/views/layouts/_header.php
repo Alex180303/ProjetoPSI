@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\_header.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial do cabecalho/topo da pagina.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 
@@ -30,7 +37,14 @@ $items = [
 ];
 ?>
 <header id="header">
-    <?php NavBar::begin(
+    <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial do cabeçalho/topo da página.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ NavBar::begin(
         [
             'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
@@ -52,5 +66,12 @@ $items = [
             'aria-label' => 'Switch to dark mode',
         ],
     ) ?>
-    <?php NavBar::end() ?>
+    <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial do cabeçalho/topo da página.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ NavBar::end() ?>
 </header>

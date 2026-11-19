@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina inicial da area (home/dashboard): apresenta o conteudo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -74,6 +81,13 @@ $img = static fn (string $f): string => Yii::getAlias('@web/template/img/' . $f)
         </div>
         <div class="row g-5">
             <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */
             $passos = [
                     ['flaticon-dog', 'Procura animais', 'Filtra por espécie, raça e porte e vê a ficha completa de cada animal.'],
                     ['flaticon-house', 'Candidata-te', 'Submete o teu pedido de adoção e acompanha o estado da candidatura.'],
@@ -92,7 +106,14 @@ $img = static fn (string $f): string => Yii::getAlias('@web/template/img/' . $f)
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ endforeach; ?>
         </div>
     </div>
 </div>
@@ -105,7 +126,14 @@ $img = static fn (string $f): string => Yii::getAlias('@web/template/img/' . $f)
             <h1 class="display-5 text-uppercase mb-0">Qual é o teu melhor amigo?</h1>
         </div>
         <div class="row g-4">
-            <?php foreach ([['flaticon-dog', 'Cães'], ['flaticon-cat', 'Gatos'], ['bi bi-egg', 'Coelhos'], ['bi bi-feather', 'Outros']] as [$icone, $nome]): ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ foreach ([['flaticon-dog', 'Cães'], ['flaticon-cat', 'Gatos'], ['bi bi-egg', 'Coelhos'], ['bi bi-feather', 'Outros']] as [$icone, $nome]): ?>
                 <div class="col-6 col-lg-3">
                     <?= Html::a(
                             '<i class="' . $icone . ' display-1 text-primary mb-3 d-block"></i><h5 class="text-uppercase mb-0">' . Html::encode($nome) . '</h5>',
@@ -113,7 +141,14 @@ $img = static fn (string $f): string => Yii::getAlias('@web/template/img/' . $f)
                             ['class' => 'd-block bg-light text-center text-dark p-5'],
                     ) ?>
                 </div>
-            <?php endforeach; ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ endforeach; ?>
         </div>
     </div>
 </div>
@@ -128,12 +163,33 @@ $img = static fn (string $f): string => Yii::getAlias('@web/template/img/' . $f)
                     <h1 class="display-5 text-uppercase text-white mb-0">Cria a tua conta e começa a adotar</h1>
                 </div>
                 <p class="text-white mb-4">O registo é gratuito. Depois de criares conta podes candidatar-te, guardar favoritos e acompanhar os teus pedidos.</p>
-                <?php if (Yii::$app->user->isGuest): ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ if (Yii::$app->user->isGuest): ?>
                     <?= Html::a('Registar', ['/site/signup'], ['class' => 'btn btn-light py-md-3 px-md-5 me-3']) ?>
                     <?= Html::a('Entrar', ['/site/login'], ['class' => 'btn btn-outline-light py-md-3 px-md-5']) ?>
-                <?php else: ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ else: ?>
                     <?= Html::a('Ver animais', ['/animal/index'], ['class' => 'btn btn-light py-md-3 px-md-5']) ?>
-                <?php endif; ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ endif; ?>
             </div>
         </div>
     </div>

@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AssociacaoController implements the CRUD actions for Associacao model.
+ * Controlador CRUD de Associações no backend.
+ *
+ * Gere o catálogo de associações (instituições/parceiros) no sistema.
+ * Acesso restrito por RBAC à permissão de gestão de catálogo.
  */
 class AssociacaoController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: apenas utilizadores com GERIR_CATALOGO podem aceder às ações.
+     * - VerbFilter: eliminações apenas via POST.
      */
     public function behaviors()
     {
@@ -43,9 +49,7 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Lists all Associacao models.
-     *
-     * @return string
+     * Lista associações com pesquisa e paginação.
      */
     public function actionIndex()
     {
@@ -59,10 +63,10 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Displays a single Associacao model.
+     * Apresenta os detalhes de uma associação.
+     *
      * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -72,9 +76,7 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Creates a new Associacao model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * Cria uma nova associação.
      */
     public function actionCreate()
     {
@@ -94,11 +96,10 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Updates an existing Associacao model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Atualiza uma associação existente.
+     *
      * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -114,11 +115,10 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Deletes an existing Associacao model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Remove uma associação.
+     *
      * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -128,11 +128,11 @@ class AssociacaoController extends Controller
     }
 
     /**
-     * Finds the Associacao model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Obtém o modelo Associacao pelo ID ou lança 404.
+     *
      * @param int $id ID
-     * @return Associacao the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Associacao
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {

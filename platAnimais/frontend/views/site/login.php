@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\login.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina de login: formulario de autenticacao processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -22,7 +29,14 @@ $this->params['meta_keywords'] = 'entrar, login, adoção, animais, associaçõe
         <div class="login-form-wrap">
             <h1 class="login-title">Entrar</h1>
 
-            <?php $form = ActiveForm::begin([
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\login.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de login: formulário de autenticação processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin([
                 'id' => 'login-form',
                 'options' => ['class' => 'login-form'],
                 'fieldConfig' => [
@@ -64,7 +78,14 @@ $this->params['meta_keywords'] = 'entrar, login, adoção, animais, associaçõe
                 'name' => 'login-button',
             ]) ?>
 
-            <?php ActiveForm::end(); ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\login.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de login: formulário de autenticação processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
             <p class="login-signup">
                 Ainda não tem conta?

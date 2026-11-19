@@ -12,12 +12,19 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AnimalController implements the CRUD actions for Animal model.
+ * Controlador CRUD de Animais no backend.
+ *
+ * Gere listagem, visualização, criação, edição e remoção de registos de animais.
+ * O acesso é controlado por RBAC com permissões distintas por ação (consultar, publicar, gerir todos).
  */
 class AnimalController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * Define comportamentos (behaviors) do controlador:
+     * - VerbFilter: restringe métodos HTTP por ação (ex.: delete apenas via POST).
+     * - AccessControl: aplica regras RBAC por ação e define tratamento customizado em caso de acesso negado.
      */
     public function behaviors()
     {
@@ -27,6 +34,7 @@ class AnimalController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
+                        // Protege a eliminação contra pedidos GET acidentais/maliciosos.
                         'delete' => ['POST'],
                     ],
                 ],
@@ -34,25 +42,31 @@ class AnimalController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
+                            // Consulta: listar e ver detalhes de animais.
                             'allow' => true,
                             'actions' => ['index', 'view'],
                             'permissions' => [Rbac::ANIMAL_CONSULTAR],
                         ],
                         [
+                            // Publicação/criação de novos animais.
                             'allow' => true,
                             'actions' => ['create'],
                             'permissions' => [Rbac::ANIMAL_PUBLICAR],
                         ],
                         [
+                            // Edição e remoção de animais (gestão administrativa total).
                             'allow' => true,
                             'actions' => ['update', 'delete'],
                             'permissions' => [Rbac::ANIMAL_GERIR_TODOS],
                         ],
                     ],
+                    // Callback executado quando o utilizador não cumpre as regras de acesso.
                     'denyCallback' => function ($rule, $action) {
+                        // Se não estiver autenticado, redireciona para login.
                         if (Yii::$app->user->isGuest) {
                             return Yii::$app->response->redirect(['site/login']);
                         }
+                        // Se estiver autenticado mas sem permissão, devolve 403.
                         throw new \yii\web\ForbiddenHttpException('Não tens permissão.');
                     },
                 ],
@@ -61,13 +75,14 @@ class AnimalController extends Controller
     }
 
     /**
-     * Lists all Animal models.
+     * Lista todos os modelos Animal (com filtros/paginação via AnimalSearch).
      *
      * @return string
      */
     public function actionIndex()
     {
         $searchModel = new AnimalSearch();
+        // Aplica parâmetros de pesquisa da query string ao data provider.
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -77,10 +92,11 @@ class AnimalController extends Controller
     }
 
     /**
-     * Displays a single Animal model.
-     * @param int $id ID
+     * Mostra os detalhes de um único modelo Animal.
+     *
+     * @param int $id ID do registo.
      * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionView($id)
     {
@@ -90,8 +106,10 @@ class AnimalController extends Controller
     }
 
     /**
-     * Creates a new Animal model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Cria um novo registo de Animal.
+     *
+     * Se o formulário for submetido e validado com sucesso, redireciona para a página de detalhe.
+     *
      * @return string|\yii\web\Response
      */
     public function actionCreate()
@@ -99,10 +117,12 @@ class AnimalController extends Controller
         $model = new Animal();
 
         if ($this->request->isPost) {
+            // Carrega dados do POST e guarda na BD; em sucesso, redireciona para view.
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
+            // Em GET, inicializa valores por defeito definidos no modelo/tabela.
             $model->loadDefaultValues();
         }
 
@@ -112,16 +132,17 @@ class AnimalController extends Controller
     }
 
     /**
-     * Updates an existing Animal model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * Atualiza um registo existente de Animal.
+     *
+     * @param int $id ID do registo.
      * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
+        // Em POST com dados válidos, guarda alterações e redireciona para a view.
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -132,11 +153,13 @@ class AnimalController extends Controller
     }
 
     /**
-     * Deletes an existing Animal model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
+     * Elimina um registo de Animal.
+     *
+     * Após apagar, redireciona para a listagem.
+     *
+     * @param int $id ID do registo.
      * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não existir.
      */
     public function actionDelete($id)
     {
@@ -146,11 +169,13 @@ class AnimalController extends Controller
     }
 
     /**
-     * Finds the Animal model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Animal the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Procura o modelo Animal pelo ID (chave primária).
+     *
+     * Método auxiliar usado pelas ações view/update/delete para garantir que o registo existe.
+     *
+     * @param int $id ID do registo.
+     * @return Animal Modelo carregado.
+     * @throws NotFoundHttpException se não for encontrado.
      */
     protected function findModel($id)
     {

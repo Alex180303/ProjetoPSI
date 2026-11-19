@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_home_footer.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial de rodape especifico do layout/home do frontend.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 

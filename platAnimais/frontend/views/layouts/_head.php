@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_head.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial do <head>: metadados, titulo e registo de assets/estilos.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 

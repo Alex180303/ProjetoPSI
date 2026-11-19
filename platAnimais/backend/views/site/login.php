@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\login.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina de login: formulario de autenticacao processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -21,7 +28,14 @@ $this->title = 'Iniciar sessão';
                 Inicia sessão para aceder ao Backoffice
             </p>
 
-            <?php $form = ActiveForm::begin([
+            <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\login.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de login: formulário de autenticação processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin([
                     'id' => 'login-form',
             ]); ?>
 
@@ -47,7 +61,14 @@ $this->title = 'Iniciar sessão';
                 </div>
             </div>
 
-            <?php ActiveForm::end(); ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\login.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de login: formulário de autenticação processado por SiteController::actionLogin.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
         </div>
     </div>

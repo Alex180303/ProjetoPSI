@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\index.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina inicial da area (home/dashboard): apresenta o conteudo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -60,7 +67,14 @@ $recent = [
 
     <!-- Estatísticas -->
     <div class="row">
-        <?php foreach ($stats as $stat): ?>
+        <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ foreach ($stats as $stat): ?>
             <div class="col-lg-3 col-6">
                 <div class="small-box <?= $stat['class'] ?>">
                     <div class="inner">
@@ -75,7 +89,14 @@ $recent = [
                     </a>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ endforeach; ?>
     </div>
 
     <div class="row">
@@ -102,14 +123,28 @@ $recent = [
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($recent as $row): ?>
+                            <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ foreach ($recent as $row): ?>
                                 <tr>
                                     <td><?= Html::encode($row['animal']) ?></td>
                                     <td><?= Html::encode($row['adotante']) ?></td>
                                     <td><span class="badge badge-<?= $row['badge'] ?>"><?= Html::encode($row['estado']) ?></span></td>
                                     <td class="text-right text-muted"><?= Html::encode($row['data']) ?></td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\site\index.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página inicial da área (home/dashboard): apresenta o conteúdo de entrada ao utilizador.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ endforeach; ?>
                         </tbody>
                     </table>
                 </div>

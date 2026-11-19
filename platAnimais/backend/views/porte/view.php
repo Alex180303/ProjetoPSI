@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\porte\view.php
+ *
+ * View do controller 'porte' (backend CRUD).
+ * Detalhe de um registo especifico.
+ * Responsabilidade: apresentar dados e interacoes de UI recorrendo a widgets/helpers do Yii2.
+ */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\contact.php
+ *
+ * View do controlador Site (paginas gerais, autenticacao e informacao).
+ * Pagina de contacto: formulario para envio de mensagens.
+ * Responsabilidade: renderizar a interface (HTML/formularios/widgets) com os dados fornecidos pelo controller.
+ */
 
 declare(strict_types=1);
 
@@ -65,7 +72,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         <p class="text-body-secondary small">Fill out the form below and we will get back to you</p>
                     </div>
 
-                    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\contact.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de contacto: formulário para envio de mensagens.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                     <div class="row">
                         <div class="col-sm-6 mb-3">
@@ -132,7 +146,14 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         ) ?>
                     </div>
 
-                    <?php ActiveForm::end(); ?>
+                    <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\site\contact.php
+ *
+ * View do controlador Site (páginas gerais, autenticação e informação).
+ * Página de contacto: formulário para envio de mensagens.
+ * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
+ */ ActiveForm::end(); ?>
 
                 </div>
             </div>

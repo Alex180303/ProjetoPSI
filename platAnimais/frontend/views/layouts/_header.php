@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_header.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial do cabecalho/topo da pagina.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 declare(strict_types=1);
 
@@ -26,12 +33,26 @@ $user = Yii::$app->user;
         <nav class="login-header-actions" aria-label="Ações da conta">
             <?= Html::a('Procurar', ['/site/index'], ['class' => 'login-action']) ?>
 
-            <?php if ($user->isGuest): ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial do cabeçalho/topo da página.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ if ($user->isGuest): ?>
                 <?= Html::a('Entrar', ['/site/login'], ['class' => 'login-action']) ?>
                 <?= Html::a('Registar', ['/site/signup'], [
                         'class' => 'login-action login-action-accent',
                 ]) ?>
-            <?php else: ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial do cabeçalho/topo da página.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ else: ?>
                 <?= Html::beginForm(['/site/logout'], 'post', [
                         'class' => 'login-logout-form',
                 ]) ?>
@@ -39,7 +60,14 @@ $user = Yii::$app->user;
                         'class' => 'login-action login-logout-button',
                 ]) ?>
                 <?= Html::endForm() ?>
-            <?php endif; ?>
+            <?php
+/**
+ * Ficheiro de view: platAnimais\frontend\views\layouts\_header.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial do cabeçalho/topo da página.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ endif; ?>
         </nav>
     </div>
 

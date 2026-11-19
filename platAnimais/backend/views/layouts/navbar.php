@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\navbar.php
+ *
+ * Layout da aplicacao: define a estrutura base comum das paginas.
+ * Partial da barra de navegacao superior.
+ * Responsabilidade: estruturar a pagina e carregar elementos comuns (assets, navegacao, scripts, etc.).
+ */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -74,18 +81,39 @@ $username = Yii::$app->user->isGuest ? 'Visitante' : Yii::$app->user->identity->
                     <i class="fas fa-bell mr-2"></i> Notificações
                 </a>
                 <div class="dropdown-divider"></div>
-                <?php if (!Yii::$app->user->isGuest): ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\navbar.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial da barra de navegação superior.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ if (!Yii::$app->user->isGuest): ?>
                     <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'm-0']) ?>
                     <?= Html::submitButton(
                         '<i class="fas fa-sign-out-alt mr-2"></i> Terminar sessão',
                         ['class' => 'btn btn-link dropdown-item'],
                     ) ?>
                     <?= Html::endForm() ?>
-                <?php else: ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\navbar.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial da barra de navegação superior.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ else: ?>
                     <a href="<?= Url::to(['/site/login']) ?>" class="dropdown-item">
                         <i class="fas fa-sign-in-alt mr-2"></i> Iniciar sessão
                     </a>
-                <?php endif; ?>
+                <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\layouts\navbar.php
+ *
+ * Layout da aplicação: define a estrutura base comum das páginas.
+ * Partial da barra de navegação superior.
+ * Responsabilidade: estruturar a página e carregar elementos comuns (assets, navegação, scripts, etc.).
+ */ endif; ?>
             </div>
         </li>
 

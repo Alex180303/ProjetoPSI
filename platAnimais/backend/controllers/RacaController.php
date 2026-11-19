@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RacaController implements the CRUD actions for Raca model.
+ * Controlador CRUD de Raças no backend.
+ *
+ * Gere o catálogo de raças de animais.
+ * Acesso restrito por RBAC à permissão de gestão de catálogo.
  */
 class RacaController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer GERIR_CATALOGO.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -42,11 +48,7 @@ class RacaController extends Controller
         );
     }
 
-    /**
-     * Lists all Raca models.
-     *
-     * @return string
-     */
+    /** Lista raças com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new RacaSearch();
@@ -58,12 +60,7 @@ class RacaController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Raca model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de uma raça. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -71,11 +68,7 @@ class RacaController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Raca model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria uma nova raça. */
     public function actionCreate()
     {
         $model = new Raca();
@@ -93,13 +86,7 @@ class RacaController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Raca model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza uma raça existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +100,7 @@ class RacaController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Raca model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove uma raça. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +108,7 @@ class RacaController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Raca model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Raca the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo Raca por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = Raca::findOne(['id' => $id])) !== null) {

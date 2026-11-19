@@ -11,12 +11,18 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PorteController implements the CRUD actions for Porte model.
+ * Controlador CRUD de Portes no backend.
+ *
+ * Gere o catálogo de portes/tamanhos de animais.
+ * Acesso restrito por RBAC à permissão de gestão de catálogo.
  */
 class PorteController extends Controller
 {
     /**
      * @inheritDoc
+     *
+     * - AccessControl: requer GERIR_CATALOGO.
+     * - VerbFilter: delete apenas via POST.
      */
     public function behaviors()
     {
@@ -42,11 +48,7 @@ class PorteController extends Controller
         );
     }
 
-    /**
-     * Lists all Porte models.
-     *
-     * @return string
-     */
+    /** Lista portes com pesquisa/filtros. */
     public function actionIndex()
     {
         $searchModel = new PorteSearch();
@@ -58,12 +60,7 @@ class PorteController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Porte model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Mostra detalhes de um porte. @throws NotFoundHttpException */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -71,11 +68,7 @@ class PorteController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Porte model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    /** Cria um novo porte. */
     public function actionCreate()
     {
         $model = new Porte();
@@ -93,13 +86,7 @@ class PorteController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Porte model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Atualiza um porte existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +100,7 @@ class PorteController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Porte model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Remove um porte. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +108,7 @@ class PorteController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Porte model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Porte the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    /** Procura o modelo Porte por ID ou lança 404. */
     protected function findModel($id)
     {
         if (($model = Porte::findOne(['id' => $id])) !== null) {

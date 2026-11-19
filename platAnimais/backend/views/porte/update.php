@@ -1,4 +1,11 @@
 <?php
+/**
+ * Ficheiro de view: platAnimais\backend\views\porte\update.php
+ *
+ * View do controller 'porte' (backend CRUD).
+ * Ecra de edicao de um registo existente (usa o formulario parcial quando aplicavel).
+ * Responsabilidade: apresentar dados e interacoes de UI recorrendo a widgets/helpers do Yii2.
+ */
 
 use yii\helpers\Html;
 
