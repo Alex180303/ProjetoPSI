@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Animal;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use Yii;
 use backend\models\AnimalSearch;
 use yii\filters\AccessControl;
@@ -39,37 +39,13 @@ class AnimalController extends Controller
                     ],
                 ],
                 'access' => [
-                    'class' => AccessControl::class,
-                    'rules' => [
-                        [
-                            // Consulta: listar e ver detalhes de animais.
-                            'allow' => true,
-                            'actions' => ['index', 'view'],
-                            'permissions' => [Rbac::ANIMAL_CONSULTAR],
-                        ],
-                        [
-                            // Publicação/criação de novos animais.
-                            'allow' => true,
-                            'actions' => ['create'],
-                            'permissions' => [Rbac::ANIMAL_PUBLICAR],
-                        ],
-                        [
-                            // Edição e remoção de animais (gestão administrativa total).
-                            'allow' => true,
-                            'actions' => ['update', 'delete'],
-                            'permissions' => [Rbac::ANIMAL_GERIR_TODOS],
+                    'access' => [
+                        'class' => AccessControl::class,
+                        'rules' => [
+                            ['allow' => true, 'roles' => ['@']],
                         ],
                     ],
-                    // Callback executado quando o utilizador não cumpre as regras de acesso.
-                    'denyCallback' => function ($rule, $action) {
-                        // Se não estiver autenticado, redireciona para login.
-                        if (Yii::$app->user->isGuest) {
-                            return Yii::$app->response->redirect(['site/login']);
-                        }
-                        // Se estiver autenticado mas sem permissão, devolve 403.
-                        throw new \yii\web\ForbiddenHttpException('Não tens permissão.');
-                    },
-                ],
+                ]
             ]
         );
     }
@@ -81,6 +57,9 @@ class AnimalController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->can('consultarAnimal')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $searchModel = new AnimalSearch();
         // Aplica parâmetros de pesquisa da query string ao data provider.
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -100,6 +79,9 @@ class AnimalController extends Controller
      */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('consultarAnimal')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -114,6 +96,9 @@ class AnimalController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('criarAnimal')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = new Animal();
 
         if ($this->request->isPost) {
@@ -140,6 +125,9 @@ class AnimalController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('editarQualquerAnimal')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         // Em POST com dados válidos, guarda alterações e redireciona para a view.
@@ -163,6 +151,9 @@ class AnimalController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('eliminarQualquerAnimal')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

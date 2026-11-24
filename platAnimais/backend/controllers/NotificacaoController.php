@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Notificacao;
 use backend\models\NotificacaoSearch;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,10 +32,7 @@ class NotificacaoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'allow' => true,
-                            'permissions' => [Rbac::CONFIGURAR_SISTEMA],
-                        ],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
                 'verbs' => [
@@ -63,6 +60,9 @@ class NotificacaoController extends Controller
     /** Mostra detalhes de uma notificação. @throws NotFoundHttpException */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -71,6 +71,9 @@ class NotificacaoController extends Controller
     /** Cria uma nova notificação. */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = new Notificacao();
 
         if ($this->request->isPost) {
@@ -89,6 +92,9 @@ class NotificacaoController extends Controller
     /** Atualiza uma notificação existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -103,6 +109,9 @@ class NotificacaoController extends Controller
     /** Remove uma notificação. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace backend\controllers;
 
 use backend\models\LoginForm;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -37,23 +37,7 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
-                    [
-                        // Ações acessíveis sem autenticação (página de login e página de erro).
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        // Apenas utilizadores autenticados podem terminar sessão.
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        // Acesso ao dashboard do backoffice condicionado por permissão RBAC.
-                        'actions' => ['index'],
-                        'allow' => true,
-                        'permissions' => [Rbac::BACKOFFICE_ACEDER],
-                    ],
+                    ['allow' => true, 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
@@ -85,6 +69,9 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('index');
     }
 

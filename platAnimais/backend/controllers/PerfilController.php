@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Perfil;
 use backend\models\PerfilSearch;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,10 +32,7 @@ class PerfilController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'allow' => true,
-                            'permissions' => [Rbac::UTILIZADOR_GERIR],
-                        ],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
                 'verbs' => [
@@ -51,6 +48,9 @@ class PerfilController extends Controller
     /** Lista perfis com pesquisa/filtros. */
     public function actionIndex()
     {
+        if (!Yii::$app->user->can('gerirUtilizadores')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $searchModel = new PerfilSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -63,6 +63,9 @@ class PerfilController extends Controller
     /** Mostra detalhes de um perfil. @throws NotFoundHttpException */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('gerirUtilizadores')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -71,6 +74,10 @@ class PerfilController extends Controller
     /** Cria um novo perfil. */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('gerirUtilizadores')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
+
         $model = new Perfil();
 
         if ($this->request->isPost) {
@@ -89,6 +96,9 @@ class PerfilController extends Controller
     /** Atualiza um perfil existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('gerirUtilizadores')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -103,6 +113,9 @@ class PerfilController extends Controller
     /** Remove um perfil. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('gerirUtilizadores')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

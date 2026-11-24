@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Associacao;
 
 /**
- * AssociacaoSearch represents the model behind the search form of `common\models\Associacao`.
+ * AssociacaoSearch representa o modelo por tras do formulario de pesquisa de `common\models\Associacao`.
  */
 class AssociacaoSearch extends Associacao
 {
@@ -28,15 +28,15 @@ class AssociacaoSearch extends Associacao
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
+        // ignora a implementacao de scenarios() da classe pai
         return Model::scenarios();
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Cria uma instancia do data provider com a query de pesquisa aplicada
      *
      * @param array $params
-     * @param string|null $formName Form name to be used into `->load()` method.
+     * @param string|null $formName Nome do formulario a utilizar no metodo `->load()`.
      *
      * @return ActiveDataProvider
      */
@@ -44,7 +44,7 @@ class AssociacaoSearch extends Associacao
     {
         $query = Associacao::find();
 
-        // add conditions that should always apply here
+        // adiciona condicoes que devem ser sempre aplicadas aqui
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -53,7 +53,7 @@ class AssociacaoSearch extends Associacao
         $this->load($params, $formName);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
+            // descomente a linha seguinte se nao quiser devolver quaisquer registos quando a validacao falhar
             // $query->where('0=1');
             return $dataProvider;
         }

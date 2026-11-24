@@ -44,7 +44,7 @@ return [
         ],
         // Sessão PHP usada no backend (nome distinto do frontend).
         'session' => [
-            // this is the name of the session cookie used for login on the backend
+            // Nome do cookie de sessão usado para autenticação no backend.
             'name' => 'advanced-backend',
         ],
         // Registo de logs da aplicação.

@@ -1,12 +1,14 @@
 <?php
 
 /**
- * This class only exists here for IDE (PHPStorm/Netbeans/...) autocompletion.
- * This file is never included anywhere.
- * Adjust this file to match classes configured in your application config, to enable IDE autocompletion for custom components.
- * Example: A property phpdoc can be added in `__Application` class as `@property \vendor\package\Rollbar|__Rollbar $rollbar` and adding a class in this file
+ * Esta classe existe apenas para autocompletar em IDEs (PHPStorm/Netbeans/...).
+ * Este ficheiro nunca e incluido em lado nenhum.
+ * Ajuste este ficheiro para corresponder as classes configuradas na configuracao da aplicacao, de forma a ativar
+ * o autocompletar do IDE para componentes personalizados.
+ * Exemplo: pode adicionar um phpdoc de propriedade na classe `__Application` como
+ * `@property \vendor\package\Rollbar|__Rollbar $rollbar` e adicionar uma classe neste ficheiro:
  * ```php
- * // @property of \vendor\package\Rollbar goes here
+ * // a propriedade @property de \vendor\package\Rollbar fica aqui
  * class __Rollbar {
  * }
  * ```

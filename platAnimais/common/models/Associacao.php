@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "associacao".
+ * Esta e a classe de modelo para a tabela "associacao".
  *
  * @property int $id
  * @property string $nome

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use yii\helpers\Html;
 
-/** @var \yii\web\View $this view component instance */
-/** @var \yii\mail\MessageInterface $message the message being composed */
-/** @var string $content main view render result */
+/** @var \yii\web\View $this instancia do componente de view */
+/** @var \yii\mail\MessageInterface $message mensagem que esta a ser composta */
+/** @var string $content resultado da renderizacao da view principal */
 
 ?>
 <?php $this->beginPage() ?>

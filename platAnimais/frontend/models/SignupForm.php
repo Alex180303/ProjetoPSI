@@ -11,7 +11,7 @@ use yii\base\Model;
 use yii\mail\MailerInterface;
 
 /**
- * Signup form
+ * Formulario de registo.
  */
 class SignupForm extends Model
 {
@@ -41,13 +41,13 @@ class SignupForm extends Model
     }
 
     /**
-     * Signs user up.
+     * Regista um novo utilizador.
      *
-     * @param MailerInterface $mailer the mailer component.
-     * @param string $supportEmail the support email address.
-     * @param string $appName the application name.
+     * @param MailerInterface $mailer componente de envio de email.
+     * @param string $supportEmail endereco de email de suporte.
+     * @param string $appName nome da aplicacao.
      *
-     * @return bool|null whether the creating new account was successful and email was sent.
+     * @return bool|null indica se a criacao da conta teve sucesso e se o email foi enviado.
      */
     public function signup(MailerInterface $mailer, string $supportEmail, string $appName): bool|null
     {
@@ -72,23 +72,24 @@ class SignupForm extends Model
         // depois atribuir o papel de anunciante/associação com
         // `yii rbac/assign <username> anunciante`.
         $auth = Yii::$app->authManager;
-        $adotante = $auth->getRole(Rbac::ROLE_ADOTANTE);
+        $adotante = $auth->getRole('adotante');
         if ($adotante !== null) {
             $auth->assign($adotante, $user->getId());
         }
+        return $this->$user;
 
-        return $this->sendEmail($mailer, $user, $supportEmail, $appName);
+//        return $this->sendEmail($mailer, $user, $supportEmail, $appName);
     }
 
     /**
-     * Sends confirmation email to user.
+     * Envia o email de confirmacao ao utilizador.
      *
-     * @param MailerInterface $mailer the mailer component.
-     * @param User $user user model to which the email should be sent.
-     * @param string $supportEmail the support email address.
-     * @param string $appName the application name.
+     * @param MailerInterface $mailer componente de envio de email.
+     * @param User $user modelo do utilizador para quem o email deve ser enviado.
+     * @param string $supportEmail endereco de email de suporte.
+     * @param string $appName nome da aplicacao.
      *
-     * @return bool whether the email was sent.
+     * @return bool indica se o email foi enviado.
      */
     protected function sendEmail(MailerInterface $mailer, User $user, string $supportEmail, string $appName): bool
     {

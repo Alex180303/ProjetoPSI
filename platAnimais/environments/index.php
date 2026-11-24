@@ -1,29 +1,29 @@
 <?php
 
 /**
- * The manifest of files that are local to specific environment.
- * This file returns a list of environments that the application
- * may be installed under. The returned data must be in the following
- * format:
+ * Manifesto de ficheiros locais para cada ambiente especifico.
+ * Este ficheiro devolve uma lista de ambientes nos quais a aplicacao
+ * pode ser instalada. Os dados devolvidos devem seguir o seguinte
+ * formato:
  *
  * ```php
  * return [
- *     'environment name' => [
- *         'path' => 'directory storing the local files',
+ *     'nome do ambiente' => [
+ *         'path' => 'diretorio que guarda os ficheiros locais',
  *         'skipFiles'  => [
- *             // list of files that should only be copied once and skipped if they already exist
+ *             // lista de ficheiros que devem ser copiados apenas uma vez e ignorados se ja existirem
  *         ],
  *         'setWritable' => [
- *             // list of directories that should be set writable
+ *             // lista de diretorios que devem ficar com permissao de escrita
  *         ],
  *         'setExecutable' => [
- *             // list of files that should be set executable
+ *             // lista de ficheiros que devem ficar com permissao de execucao
  *         ],
  *         'setCookieValidationKey' => [
- *             // list of config files that need to be inserted with automatically generated cookie validation keys
+ *             // lista de ficheiros de configuracao onde devem ser inseridas chaves de validacao de cookie geradas automaticamente
  *         ],
  *         'createSymlink' => [
- *             // list of symlinks to be created. Keys are symlinks, and values are the targets.
+ *             // lista de ligacoes simbolicas a criar. As chaves sao as ligacoes e os valores sao os destinos.
  *         ],
  *     ],
  * ];

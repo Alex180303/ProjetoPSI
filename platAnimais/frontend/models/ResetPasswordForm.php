@@ -10,18 +10,18 @@ use yii\base\InvalidArgumentException;
 use yii\base\Model;
 
 /**
- * Password reset form
+ * Formulario de reposicao de password.
  */
 class ResetPasswordForm extends Model
 {
     public string $password = '';
     private User|null $_user = null;
     /**
-     * Creates a form model given a token.
+     * Cria um modelo de formulario a partir de um token.
      *
      * @param string $token
-     * @param array $config name-value pairs that will be used to initialize the object properties
-     * @throws InvalidArgumentException if token is empty or not valid
+     * @param array $config pares nome-valor usados para inicializar as propriedades do objeto
+     * @throws InvalidArgumentException se o token estiver vazio ou for invalido
      */
     public function __construct(string $token, array $config = [])
     {
@@ -47,9 +47,9 @@ class ResetPasswordForm extends Model
     }
 
     /**
-     * Resets password.
+     * Repõe a password.
      *
-     * @return bool if password was reset.
+     * @return bool indica se a password foi reposta.
      */
     public function resetPassword(): bool
     {

@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Desconto;
 use backend\models\DescontoSearch;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,16 +32,7 @@ class DescontoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'allow' => true,
-                            'permissions' => [Rbac::CONFIGURAR_SISTEMA],
-                        ],
-                    ],
-                ],
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
             ]
@@ -70,6 +61,9 @@ class DescontoController extends Controller
      */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,6 +74,9 @@ class DescontoController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = new Desconto();
 
         if ($this->request->isPost) {
@@ -103,6 +100,9 @@ class DescontoController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -122,6 +122,9 @@ class DescontoController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('configurarSistema')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

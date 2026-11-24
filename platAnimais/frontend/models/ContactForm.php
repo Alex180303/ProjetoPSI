@@ -8,7 +8,7 @@ use yii\base\Model;
 use yii\mail\MailerInterface;
 
 /**
- * ContactForm is the model behind the contact form.
+ * ContactForm e o modelo por tras do formulario de contacto.
  */
 class ContactForm extends Model
 {
@@ -23,11 +23,11 @@ class ContactForm extends Model
     public function rules(): array
     {
         return [
-            // name, email, subject and body are required
+            // nome, email, assunto e mensagem sao obrigatorios
             [['name', 'email', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
+            // o email tem de ter um formato valido
             ['email', 'email'],
-            // verifyCode needs to be entered correctly
+            // o codigo de verificacao tem de ser introduzido corretamente
             ['verifyCode', 'captcha'],
         ];
     }
@@ -43,14 +43,14 @@ class ContactForm extends Model
     }
 
     /**
-     * Sends an email to the specified email address using the information collected by this model.
+     * Envia um email para o endereco indicado usando a informacao recolhida por este modelo.
      *
-     * @param MailerInterface $mailer the mailer component.
-     * @param string $email the target email address.
-     * @param string $senderEmail the sender email address.
-     * @param string $senderName the sender name.
+     * @param MailerInterface $mailer componente de envio de email.
+     * @param string $email endereco de email de destino.
+     * @param string $senderEmail endereco de email do remetente.
+     * @param string $senderName nome do remetente.
      *
-     * @return bool whether the email was sent.
+     * @return bool indica se o email foi enviado.
      */
     public function sendEmail(MailerInterface $mailer, string $email, string $senderEmail, string $senderName): bool
     {

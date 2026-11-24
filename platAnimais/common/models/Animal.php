@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "animal".
+ * Esta e a classe de modelo para a tabela "animal".
  *
  * @property int $id
  * @property string $nome
@@ -74,7 +74,7 @@ class Animal extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Especie]].
+     * Obtem a query para [[Especie]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -84,7 +84,7 @@ class Animal extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Especie0]].
+     * Obtem a query para [[Especie0]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -94,7 +94,7 @@ class Animal extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Utilizador]].
+     * Obtem a query para [[Utilizador]].
      *
      * @return \yii\db\ActiveQuery
      */

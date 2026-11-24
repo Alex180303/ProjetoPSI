@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "adocao".
+ * Esta e a classe de modelo para a tabela "adocao".
  *
  * @property int $id
  * @property string $data_submissao
@@ -58,7 +58,7 @@ class Adocao extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Animal]].
+     * Obtem a query para [[Animal]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -68,7 +68,7 @@ class Adocao extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Utilizador]].
+     * Obtem a query para [[Utilizador]].
      *
      * @return \yii\db\ActiveQuery
      */

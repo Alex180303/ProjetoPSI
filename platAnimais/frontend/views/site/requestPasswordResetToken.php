@@ -1,6 +1,6 @@
 <?php
 /**
- * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
+ * Ficheiro de view: frontend/views/site/requestPasswordResetToken.php
  *
  * View do controlador Site (paginas gerais, autenticacao e informacao).
  * Pagina para pedir reposicao de password (solicita envio de token).
@@ -29,7 +29,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
     <div class="card border-0 overflow-hidden login-split-card">
         <div class="row g-0">
 
-            <!-- Brand panel -->
+            <!-- Painel de marca -->
             <div class="col-md-5 d-none d-md-flex login-brand-panel text-white">
                 <div class="d-flex flex-column justify-content-between p-4 p-lg-5 w-100">
                     <div>
@@ -53,7 +53,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                 </div>
             </div>
 
-            <!-- Form panel -->
+            <!-- Painel do formulario -->
             <div class="col-md-7">
                 <div class="p-4 p-lg-5">
                     <div class="text-center mb-4">
@@ -71,14 +71,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         <p class="text-body-secondary small">A link to reset your password will be sent to your email</p>
                     </div>
 
-                    <?php
-/**
- * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
- *
- * View do controlador Site (páginas gerais, autenticação e informação).
- * Página para pedir reposição de password (solicita envio de token).
- * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
- */ $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+                    <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
                     <div class="mb-4">
                         <?= $form->field($model, 'email', [
@@ -101,14 +94,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         ) ?>
                     </div>
 
-                    <?php
-/**
- * Ficheiro de view: platAnimais\frontend\views\site\requestPasswordResetToken.php
- *
- * View do controlador Site (páginas gerais, autenticação e informação).
- * Página para pedir reposição de password (solicita envio de token).
- * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
- */ ActiveForm::end(); ?>
+                    <?php ActiveForm::end(); ?>
 
                     <div class="text-body-secondary text-center mt-3 small">
                         Remember your password? <?= Html::a('Login', ['site/login']) ?>

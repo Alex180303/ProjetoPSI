@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Application requirement checker script.
+ * Script de verificacao dos requisitos da aplicacao.
  *
- * In order to run this script use the following console command:
+ * Para executar este script, use o seguinte comando na consola:
  * php requirements.php
  *
- * In order to run this script from the web, you should copy it to the web root.
- * If you are using Linux you can create a hard link instead, using the following command:
+ * Para executar este script a partir da web, deve copia-lo para a raiz web.
+ * Se estiver a usar Linux, pode criar uma ligacao fisica (hard link) em vez disso, usando o seguinte comando:
  * ln ../../requirements.php requirements.php
  */
 
-// you may need to adjust this path to the correct Yii framework path
-// uncomment and adjust the following line if Yii is not located at the default path
+// pode ser necessario ajustar este caminho para o caminho correto do framework Yii
+// descomente e ajuste a linha seguinte se o Yii nao estiver localizado no caminho predefinido
 //$frameworkPath = dirname(__FILE__) . '/vendor/yiisoft/yii2';
 if (!isset($frameworkPath)) {
     $searchPaths = array(
@@ -32,7 +32,7 @@ if (!isset($frameworkPath) || !is_dir($frameworkPath)) {
         . '<p>You need to install Yii framework via composer or adjust the framework path in file <abbr title="' . __FILE__ . '">' . basename(__FILE__) . "</abbr>.</p>\n"
         . '<p>Please refer to the <abbr title="' . dirname(dirname(dirname(__FILE__))) . "/README.md\">README</abbr> on how to install Yii.</p>\n";
     if (!empty($_SERVER['argv'])) {
-        // do not print HTML when used in console mode
+        // nao imprimir HTML quando usado em modo de consola
         echo strip_tags($message);
     } else {
         echo $message;
@@ -66,7 +66,7 @@ if (extension_loaded('gd')) {
 }
 
 /**
- * Adjust requirements according to your application specifics.
+ * Ajuste os requisitos de acordo com as especificidades da sua aplicacao.
  */
 $requirements = array(
     // Database :

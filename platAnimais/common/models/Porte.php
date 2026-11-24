@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "porte".
+ * Esta e a classe de modelo para a tabela "porte".
  *
  * @property int $id
  * @property string $nome

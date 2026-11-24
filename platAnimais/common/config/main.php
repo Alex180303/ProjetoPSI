@@ -14,11 +14,9 @@ use yii\rbac\DbManager;
  * - `authManager` para RBAC (controlo de acesso baseado em papéis/permissões).
  */
 return [
-    // Componentes/classes inicializadas no arranque da aplicação.
     'bootstrap' => [
         \common\bootstrap\MailerBootstrap::class,
     ],
-    // Aliases de paths usados pelo framework e asset bundles.
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -29,9 +27,7 @@ return [
         // Gestor de RBAC baseado em base de dados (tabelas auth_*).
         // Guarda itens (roles/permissions), regras e atribuições de papéis a utilizadores.
         'authManager' => [
-            'class' => DbManager::class,
-            // Os papéis por omissão (ex.: "visitante") são configurados no frontend via defaultRoles.
-            // 'cache' => 'cache', // opcional: ativar cache para melhorar desempenho do RBAC
-        ],
+            'class' => 'yii\rbac\DbManager',
+                   ],
     ],
 ];

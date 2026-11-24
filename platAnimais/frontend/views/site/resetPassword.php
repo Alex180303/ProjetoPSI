@@ -1,6 +1,6 @@
 <?php
 /**
- * Ficheiro de view: platAnimais\frontend\views\site\resetPassword.php
+ * Ficheiro de view: frontend/views/site/resetPassword.php
  *
  * View do controlador Site (paginas gerais, autenticacao e informacao).
  * Pagina para redefinir a password com base num token valido.
@@ -29,7 +29,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
     <div class="card border-0 overflow-hidden login-split-card">
         <div class="row g-0">
 
-            <!-- Brand panel -->
+            <!-- Painel de marca -->
             <div class="col-md-5 d-none d-md-flex login-brand-panel text-white">
                 <div class="d-flex flex-column justify-content-between p-4 p-lg-5 w-100">
                     <div>
@@ -53,7 +53,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                 </div>
             </div>
 
-            <!-- Form panel -->
+            <!-- Painel do formulario -->
             <div class="col-md-7">
                 <div class="p-4 p-lg-5">
                     <div class="text-center mb-4">
@@ -71,14 +71,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         <p class="text-body-secondary small">Please choose a new password for your account</p>
                     </div>
 
-                    <?php
-/**
- * Ficheiro de view: platAnimais\frontend\views\site\resetPassword.php
- *
- * View do controlador Site (páginas gerais, autenticação e informação).
- * Página para redefinir a password com base num token válido.
- * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
- */ $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+                    <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
                     <div class="mb-4">
                         <?= $form->field($model, 'password', [
@@ -101,14 +94,7 @@ $labelOptions = ['class' => 'form-label fw-semibold small'];
                         ) ?>
                     </div>
 
-                    <?php
-/**
- * Ficheiro de view: platAnimais\frontend\views\site\resetPassword.php
- *
- * View do controlador Site (páginas gerais, autenticação e informação).
- * Página para redefinir a password com base num token válido.
- * Responsabilidade: renderizar a interface (HTML/formulários/widgets) com os dados fornecidos pelo controller.
- */ ActiveForm::end(); ?>
+                    <?php ActiveForm::end(); ?>
 
                 </div>
             </div>

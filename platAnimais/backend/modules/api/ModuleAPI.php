@@ -3,7 +3,7 @@
 namespace backend\modules\api;
 
 /**
- * api module definition class
+ * Classe de definicao do modulo da API
  */
 class ModuleAPI extends \yii\base\Module
 {
@@ -19,6 +19,6 @@ class ModuleAPI extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        // o codigo de inicializacao personalizado vai aqui
     }
 }

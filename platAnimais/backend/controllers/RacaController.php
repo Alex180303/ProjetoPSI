@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Raca;
 use backend\models\RacaSearch;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,10 +32,7 @@ class RacaController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'allow' => true,
-                            'permissions' => [Rbac::GERIR_CATALOGO],
-                        ],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
                 'verbs' => [
@@ -51,6 +48,9 @@ class RacaController extends Controller
     /** Lista raças com pesquisa/filtros. */
     public function actionIndex()
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $searchModel = new RacaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -63,6 +63,9 @@ class RacaController extends Controller
     /** Mostra detalhes de uma raça. @throws NotFoundHttpException */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -71,6 +74,10 @@ class RacaController extends Controller
     /** Cria uma nova raça. */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
+
         $model = new Raca();
 
         if ($this->request->isPost) {
@@ -89,6 +96,9 @@ class RacaController extends Controller
     /** Atualiza uma raça existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -103,6 +113,9 @@ class RacaController extends Controller
     /** Remove uma raça. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

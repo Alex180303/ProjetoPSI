@@ -4,7 +4,8 @@ namespace backend\controllers;
 
 use common\models\Adocao;
 use backend\models\AdocaoSearch;
-use common\rbac\Rbac;
+use Yii;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -33,11 +34,7 @@ class AdocaoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            // Qualquer ação do controlador exige permissão de avaliação de candidaturas.
-                            'allow' => true,
-                            'permissions' => [Rbac::CANDIDATURA_AVALIAR],
-                        ],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
                 'verbs' => [
@@ -83,6 +80,9 @@ class AdocaoController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('avaliarCandidatura')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = new Adocao();
 
         if ($this->request->isPost) {
@@ -106,6 +106,9 @@ class AdocaoController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('avaliarCandidatura')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -125,6 +128,9 @@ class AdocaoController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('avaliarCandidatura')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

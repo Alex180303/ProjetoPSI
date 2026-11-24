@@ -10,7 +10,7 @@ main > .container {
     font-style: italic;
 }
 
-/* add sorting icons to gridview sort links */
+/* adiciona icones de ordenacao as ligacoes de ordenacao do gridview */
 a.asc:after, a.desc:after {
     content: '';
     left: 3px;
@@ -50,13 +50,13 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* align navbar brand baseline with nav links */
+/* alinha a linha de base da marca da navbar com as ligacoes de navegacao */
 .navbar > .container,
 .navbar > .container-fluid {
     align-items: baseline;
 }
 
-/* style navbar logout link color, hover state, and mobile layout */
+/* estiliza a cor da ligacao de logout na navbar, o estado hover e o layout mobile */
 .navbar-nav .nav-link.logout {
     color: var(--bs-navbar-color);
 }
@@ -77,13 +77,13 @@ a.desc:after {
 
 
 
-/* footer logo: light logo by default (light bg-body-tertiary), dark logo for dark theme */
+/* logotipo do rodape: logotipo claro por predefinicao (bg-body-tertiary claro), logotipo escuro para o tema escuro */
 .footer-logo-dark { display: none; }
 
 [data-bs-theme="dark"] .footer-logo-light { display: none; }
 [data-bs-theme="dark"] .footer-logo-dark  { display: inline-block; }
 
-/* login inputs: seamless icon inside input (Volt style) */
+/* inputs de login: icone integrado dentro do input (estilo Volt) */
 .login-split-card .input-group {
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
@@ -115,16 +115,16 @@ a.desc:after {
     box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25);
 }
 
-/* validation styles for browsers that support :has() */
+/* estilos de validacao para navegadores que suportam :has() */
 @supports selector(.input-group:has(.is-invalid)) {
-    /* show validation errors below the input-group */
+    /* mostra erros de validacao abaixo do input-group */
     .login-split-card .input-group:has(.is-invalid) ~ .invalid-feedback {
         display: block;
         margin-top: .35rem;
         margin-bottom: .5rem;
     }
 
-    /* red border on input-group when invalid */
+    /* borda vermelha no input-group quando invalido */
     .login-split-card .input-group:has(.is-invalid) {
         border-color: var(--bs-danger);
     }
@@ -134,7 +134,7 @@ a.desc:after {
     }
 }
 
-/* fallback validation styles for browsers without :has() support */
+/* estilos de validacao alternativos para navegadores sem suporte a :has() */
 @supports not selector(.input-group:has(.is-invalid)) {
     .login-split-card .invalid-feedback:not(:empty) {
         display: block;
@@ -151,7 +151,7 @@ a.desc:after {
     }
 }
 
-/* login split card */
+/* cartao dividido de login */
 .login-split-card {
     border-radius: 1rem;
     box-shadow: 0 4px 24px rgba(0, 0, 0, .10);
@@ -225,7 +225,7 @@ a.desc:after {
     transform: translateY(0);
 }
 
-/* dark mode login card */
+/* cartao de login no modo escuro */
 [data-bs-theme="dark"] .login-split-card {
     background-color: var(--bs-body-bg);
     box-shadow: 0 0 0 1px var(--bs-border-color), 0 4px 24px rgba(0, 0, 0, .4);
@@ -235,7 +235,7 @@ a.desc:after {
     filter: invert(1);
 }
 
-/* dashboard welcome banner */
+/* banner de boas-vindas do dashboard */
 .dashboard-banner {
     background: linear-gradient(135deg, #83C933 0%, #3a9cbd 40%, #40B3D8 100%);
     position: relative;
@@ -252,7 +252,7 @@ a.desc:after {
     pointer-events: none;
 }
 
-/* centered page layout: error */
+/* layout de pagina centrado: erro */
 .site-index,
 .site-error {
     flex: 1;

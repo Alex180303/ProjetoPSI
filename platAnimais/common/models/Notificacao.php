@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "notificacao".
+ * Esta e a classe de modelo para a tabela "notificacao".
  *
  * @property int $id
  * @property string $mensagem
@@ -52,7 +52,7 @@ class Notificacao extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Utilizador]].
+     * Obtem a query para [[Utilizador]].
      *
      * @return \yii\db\ActiveQuery
      */

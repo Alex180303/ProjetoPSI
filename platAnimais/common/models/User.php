@@ -11,7 +11,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * Modelo de utilizador.
  *
  * @property int $id
  * @property string $username
@@ -23,7 +23,7 @@ use yii\web\IdentityInterface;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
- * @property string $password write-only password
+ * @property string $password password apenas de escrita
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -38,9 +38,10 @@ class User extends ActiveRecord implements IdentityInterface
         return '{{%user}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function getPerfil()
+    {
+        return $this->hasOne(Perfil::class, ['utilizador_id' => 'id']);
+    }
     public function behaviors(): array
     {
         return [
@@ -76,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Procura um utilizador pelo nome de utilizador.
      *
      * @param string $username
      * @return static|null
@@ -87,9 +88,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by password reset token
+     * Procura um utilizador pelo token de reposicao de password.
      *
-     * @param string $token password reset token
+     * @param string $token token de reposicao de password
      * @return static|null
      */
     public static function findByPasswordResetToken(string $token): User|null
@@ -105,9 +106,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by verification email token
+     * Procura um utilizador pelo token de verificacao de email.
      *
-     * @param string $token verify email token
+     * @param string $token token de verificacao de email
      * @return static|null
      */
     public static function findByVerificationToken(string $token): User|null
@@ -121,9 +122,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds out if password reset token is valid
+     * Verifica se o token de reposicao de password e valido.
      *
-     * @param string|null $token password reset token
+     * @param string|null $token token de reposicao de password
      * @return bool
      */
     public static function isPasswordResetTokenValid(string|null $token): bool
@@ -164,10 +165,10 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Validates password
+     * Valida a password.
      *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
+     * @param string $password password a validar
+     * @return bool indica se a password fornecida e valida para o utilizador atual
      */
     public function validatePassword(string $password): bool
     {
@@ -175,7 +176,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates password hash from password and sets it to the model
+     * Gera o hash da password e atribui-o ao modelo.
      *
      * @param string $password
      */
@@ -185,7 +186,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates "remember me" authentication key
+     * Gera a chave de autenticacao "remember me".
      */
     public function generateAuthKey(): void
     {
@@ -193,7 +194,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates new password reset token
+     * Gera um novo token de reposicao de password.
      */
     public function generatePasswordResetToken(): void
     {
@@ -201,7 +202,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates new token for email verification
+     * Gera um novo token para verificacao de email.
      */
     public function generateEmailVerificationToken(): void
     {
@@ -209,7 +210,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Removes password reset token
+     * Remove o token de reposicao de password.
      */
     public function removePasswordResetToken(): void
     {

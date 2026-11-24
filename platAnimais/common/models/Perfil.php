@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "perfil".
+ * Esta e a classe de modelo para a tabela "perfil".
  *
  * @property int $id
  * @property int $utilizador_id

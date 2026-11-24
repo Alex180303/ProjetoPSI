@@ -3,7 +3,7 @@
 namespace common\models;
 
 /**
- * This is the model class for table "raca".
+ * Esta e a classe de modelo para a tabela "raca".
  *
  * @property int $id
  * @property string $nome
@@ -50,7 +50,7 @@ class Raca extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Especie]].
+     * Obtem a query para [[Especie]].
      *
      * @return \yii\db\ActiveQuery
      */

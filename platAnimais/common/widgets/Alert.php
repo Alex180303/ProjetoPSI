@@ -8,19 +8,19 @@ use Yii;
 use yii\bootstrap5\Alert as BootstrapAlert;
 
 /**
- * Alert widget renders a message from session flash. All flash messages are displayed
- * in the sequence they were assigned using setFlash. You can set message as following:
+ * O widget Alert apresenta uma mensagem proveniente da flash da sessao. Todas as mensagens flash sao apresentadas
+ * na ordem em que foram atribuidas com setFlash. Pode definir uma mensagem da seguinte forma:
  *
  * ```php
- * Yii::$app->session->setFlash('error', 'This is the message');
- * Yii::$app->session->setFlash('success', 'This is the message');
- * Yii::$app->session->setFlash('info', 'This is the message');
+ * Yii::$app->session->setFlash('error', 'Esta e a mensagem');
+ * Yii::$app->session->setFlash('success', 'Esta e a mensagem');
+ * Yii::$app->session->setFlash('info', 'Esta e a mensagem');
  * ```
  *
- * Multiple messages could be set as follows:
+ * Tambem e possivel definir varias mensagens da seguinte forma:
  *
  * ```php
- * Yii::$app->session->setFlash('error', ['Error 1', 'Error 2']);
+ * Yii::$app->session->setFlash('error', ['Erro 1', 'Erro 2']);
  * ```
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
@@ -29,10 +29,10 @@ use yii\bootstrap5\Alert as BootstrapAlert;
 class Alert extends \yii\bootstrap5\Widget
 {
     /**
-     * @var array the alert types configuration for the flash messages.
-     * This array is setup as $key => $value, where:
-     * - key: the name of the session flash variable
-     * - value: the bootstrap alert type (i.e. danger, success, info, warning)
+     * @var array configuracao dos tipos de alerta para as mensagens flash.
+     * Este array e definido como $key => $value, onde:
+     * - key: o nome da variavel flash da sessao
+     * - value: o tipo de alerta Bootstrap (ex.: danger, success, info, warning)
      */
     public array $alertTypes = [
         'error'   => 'alert-danger',
@@ -42,8 +42,8 @@ class Alert extends \yii\bootstrap5\Widget
         'warning' => 'alert-warning'
     ];
     /**
-     * @var array the options for rendering the close button tag.
-     * Array will be passed to [[\yii\bootstrap5\Alert::closeButton]].
+     * @var array opcoes para renderizar a tag do botao de fechar.
+     * O array sera passado para [[\yii\bootstrap5\Alert::closeButton]].
      */
     public array $closeButton = [];
     /**

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace frontend\controllers;
 
 use common\models\LoginForm;
-use common\rbac\Rbac;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
@@ -59,19 +58,13 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 // Apenas estas ações são alvo das regras abaixo; as restantes ficam acessíveis por omissão.
-                'only' => ['logout', 'signup', 'about'],
+                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
                         // Registo: permitido a utilizadores com a permissão REGISTAR_CONTA (tipicamente visitantes).
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => [Rbac::REGISTAR_CONTA],
-                    ],
-                    [
-                        // Página "about": requer permissão para consultar associações.
-                        'actions' => ['about'],
-                        'allow' => true,
-                        'roles' => [Rbac::CONSULTAR_ASSOCIACAO],
+                        'roles' => ['?'],
                     ],
                     [
                         // Logout: apenas utilizadores autenticados ('@').

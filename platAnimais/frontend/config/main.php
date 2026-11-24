@@ -37,11 +37,6 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
-        // RBAC: define "visitante" como papel por omissão para utilizadores não autenticados.
-        // A regra associada (GuestRule/isGuest) impede que utilizadores autenticados recebam esse papel.
-        'authManager' => [
-            'defaultRoles' => [\common\rbac\Rbac::ROLE_VISITANTE],
-        ],
         // Componente de utilizador (login/logout, identidade, sessão).
         'user' => [
             'identityClass' => \common\models\User::class,
@@ -51,7 +46,7 @@ return [
         ],
         // Sessão do frontend (nome distinto para separar da sessão do backend).
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
+            // Nome do cookie de sessão usado para autenticação no frontend.
             'name' => 'advanced-frontend',
         ],
         // Configuração de logging de erros/avisos.

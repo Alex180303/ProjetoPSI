@@ -8,7 +8,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * Login form
+ * Formulario de login.
  */
 class LoginForm extends Model
 {
@@ -40,11 +40,11 @@ class LoginForm extends Model
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
+     * Valida a password.
+     * Este metodo serve como validacao inline para a password.
      *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
+     * @param string $attribute o atributo que esta a ser validado
+     * @param array $params pares nome-valor adicionais fornecidos na regra
      */
     public function validatePassword(string $attribute, array|null $params): void
     {
@@ -58,21 +58,25 @@ class LoginForm extends Model
     }
 
     /**
-     * Logs in a user using the provided username and password.
+     * Autentica um utilizador com o nome de utilizador/email e a password fornecidos.
      *
-     * @return bool whether the user is logged in successfully
+     * @return bool indica se o utilizador iniciou sessao com sucesso
      */
     public function login(): bool
     {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            {
+                if (!Yii::$app->addError('username', 'nao tem permissao para aceder ao backend.'));
+                return false;
+            }
         }
 
         return false;
     }
 
     /**
-     * Finds user by [[username]]
+     * Procura o utilizador associado ao identificador fornecido.
      *
      * @return User|null
      */

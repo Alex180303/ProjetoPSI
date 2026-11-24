@@ -9,7 +9,7 @@ use yii\base\Model;
 use yii\mail\MailerInterface;
 
 /**
- * Password reset request form
+ * Formulario de pedido de reposicao de password.
  */
 class PasswordResetRequestForm extends Model
 {
@@ -32,13 +32,13 @@ class PasswordResetRequestForm extends Model
     }
 
     /**
-     * Sends an email with a link, for resetting the password.
+     * Envia um email com uma ligacao para repor a password.
      *
-     * @param MailerInterface $mailer the mailer component.
-     * @param string $supportEmail the support email address.
-     * @param string $appName the application name.
+     * @param MailerInterface $mailer componente de envio de email.
+     * @param string $supportEmail endereco de email de suporte.
+     * @param string $appName nome da aplicacao.
      *
-     * @return bool whether the email was sent.
+     * @return bool indica se o email foi enviado.
      */
     public function sendEmail(MailerInterface $mailer, string $supportEmail, string $appName): bool
     {

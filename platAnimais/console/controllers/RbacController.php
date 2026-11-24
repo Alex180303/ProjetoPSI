@@ -1,134 +1,170 @@
 <?php
 
-declare(strict_types=1);
-
 namespace console\controllers;
 
-use common\models\User;
-use common\rbac\Rbac;
 use Yii;
 use yii\console\Controller;
-use yii\console\ExitCode;
 
-/**
- * Controlador de consola para gestão de papéis RBAC.
- *
- * Permite administrar atribuições de papéis a utilizadores via terminal (útil em setup,
- * manutenção ou ambientes sem interface de gestão de utilizadores).
- *
- * Exemplos de uso:
- *   php yii rbac/assign <username> <papel>   -> atribui um papel ao utilizador
- *   php yii rbac/revoke <username> <papel>   -> remove um papel do utilizador
- *   php yii rbac/roles  <username>           -> lista os papéis atribuídos ao utilizador
- *
- * Depende do componente `authManager` configurado na aplicação (ex.: DbManager) e dos papéis
- * previamente criados na base de dados pela migração de RBAC.
- */
 class RbacController extends Controller
 {
-    /**
-     * Lista de papéis que este comando permite atribuir/remover via consola.
-     * (O papel "visitante" é normalmente um papel por omissão aplicado por regra, não atribuído.)
-     */
-    private const PAPEIS = [Rbac::ROLE_ADOTANTE, Rbac::ROLE_ANUNCIANTE, Rbac::ROLE_ADMIN];
-
-    /**
-     * Atribui um papel a um utilizador, se ainda não estiver atribuído.
-     *
-     * @param string $username Nome de utilizador (campo username em common\models\User).
-     * @param string $papel    Identificador do papel (deve existir em authManager e em self::PAPEIS).
-     * @return int Código de saída da consola (0 = OK, erro de dados caso contrário).
-     */
-    public function actionAssign(string $username, string $papel): int
+    public function actionInit()
     {
-        // Valida existência do utilizador e do papel antes de alterar atribuições.
-        $user = $this->utilizador($username);
-        $role = $this->papel($papel);
-        if ($user === null || $role === null) {
-            return ExitCode::DATAERR;
-        }
-
         $auth = Yii::$app->authManager;
 
-        // Evita duplicar atribuições (getAssignment verifica se o par utilizador/papel já existe).
-        if ($auth->getAssignment($papel, $user->id) !== null) {
-            $this->stdout("'{$username}' já tem o papel '{$papel}'.\n");
-            return ExitCode::OK;
-        }
+        // ATENÇÃO: remove todos os papéis, permissões,
+        // relações, regras e atribuições RBAC existentes.
+        // Usa esta linha apenas se quiseres reconstruir tudo.
+        $auth->removeAll();
 
-        // Persiste a atribuição do papel ao utilizador (tabela auth_assignment).
-        $auth->assign($role, $user->id);
-        $this->stdout("Papel '{$papel}' atribuído a '{$username}'.\n");
+        // Criar permissões
+        $consultarAnimal = $auth->createPermission('consultarAnimal');
+        $consultarAnimal->description = 'Consultar animal';
+        $auth->add($consultarAnimal);
 
+        $consultarAssociacao = $auth->createPermission('consultarAssociacao');
+        $consultarAssociacao->description = 'Consultar associação';
+        $auth->add($consultarAssociacao);
+
+        $pedirAdocao = $auth->createPermission('pedirAdocao');
+        $pedirAdocao->description = 'Pedir adoção';
+        $auth->add($pedirAdocao);
+
+        $consultarAdocoesProprias = $auth->createPermission('consultarAdocoesProprias');
+        $consultarAdocoesProprias->description = 'Consultar adoções';
+        $auth->add($consultarAdocoesProprias);
+
+        $favoritarAnimal = $auth->createPermission('favoritarAnimal');
+        $favoritarAnimal->description = 'Adicionar animal a favoritos';
+        $auth->add($favoritarAnimal);
+
+        $editarPerfilProprio = $auth->createPermission('editarPerfilProprio');
+        $editarPerfilProprio->description = 'Editar perfil';
+        $auth->add($editarPerfilProprio);
+
+        $criarAnimal = $auth->createPermission('criarAnimal');
+        $criarAnimal->description = 'Criar animal';
+        $auth->add($criarAnimal);
+
+        $editarAnimalProprio = $auth->createPermission('editarAnimalProprio');
+         $editarAnimalProprio->description = 'Editar animal';
+        $auth->add($editarAnimalProprio);
+
+        $eliminarAnimalProprio = $auth->createPermission('eliminarAnimalProprio');
+        $eliminarAnimalProprio->description = 'Eliminar animal';
+        $auth->add($eliminarAnimalProprio);
+
+        $consultarSaude = $auth->createPermission('consultarSaude');
+        $consultarSaude->description = 'Consultar saude';
+        $auth->add($consultarSaude);
+
+        $criarRegistoSaude = $auth->createPermission('criarRegistoSaude');
+        $criarRegistoSaude->description = 'Criar registo de saude';
+        $auth->add($criarRegistoSaude);
+
+        $editarRegistoSaudeProprio = $auth->createPermission('editarRegistoSaudeProprio');
+        $editarRegistoSaudeProprio->description = 'Editar registo de saude';
+        $auth->add($editarRegistoSaudeProprio);
+
+        $eliminarRegistoSaudeProprio = $auth->createPermission('eliminarRegistoSaudeProprio');
+        $eliminarRegistoSaudeProprio->description = 'Eliminar registo de saude';
+        $auth->add($eliminarRegistoSaudeProprio);
+
+        $avaliarCandidatura = $auth->createPermission('avaliarCandidatura');
+        $avaliarCandidatura->description = 'Avaliar candidatura';
+        $auth->add($avaliarCandidatura);
+
+        $editarQualquerAnimal = $auth->createPermission('editarQualquerAnimal');
+        $editarQualquerAnimal->description = 'Editar animal';
+        $auth->add($editarQualquerAnimal);
+
+        $eliminarQualquerAnimal = $auth->createPermission('eliminarQualquerAnimal');
+        $eliminarQualquerAnimal->description = 'Eliminar animal';
+        $auth->add($eliminarQualquerAnimal);
+
+        $gerirUtilizadores = $auth->createPermission('gerirUtilizadores');
+        $gerirUtilizadores->description = 'Gerir utilizadores';
+        $auth->add($gerirUtilizadores);
+
+        $gerirCatalogo = $auth->createPermission('gerirCatalogo');
+        $gerirCatalogo->description = 'Gerir catalogo';
+        $auth->add($gerirCatalogo);
+
+        $configurarSistema = $auth->createPermission('configurarSistema');
+        $configurarSistema->description = 'Configurar sistema';
+        $auth->add($configurarSistema);
+
+
+        // Criar papéis
+        $adotante = $auth->createRole('adotante');
+        $auth->add($adotante);
+        // Ligar permissões ao papel adotante
+        $auth->addChild($adotante, $consultarAnimal);
+        $auth->addChild($adotante, $consultarAssociacao);
+        $auth->addChild($adotante, $pedirAdocao);
+        $auth->addChild($adotante, $consultarAdocoesProprias);
+        $auth->addChild($adotante, $favoritarAnimal);
+        $auth->addChild($adotante, $editarPerfilProprio);
+        $auth->addChild($adotante, $consultarSaude);
+
+
+        $anunciante = $auth->createRole('anunciante');
+        $auth->add($anunciante);
+        // Ligar permissões ao papel anunciante
+        $auth->addChild($anunciante, $consultarAnimal);
+        $auth->addChild($anunciante, $consultarAssociacao);
+        $auth->addChild($anunciante, $editarPerfilProprio);
+        $auth->addChild($anunciante, $criarAnimal);
+        $auth->addChild($anunciante, $editarAnimalProprio);
+        $auth->addChild($anunciante, $eliminarAnimalProprio);
+        $auth->addChild($anunciante, $consultarSaude);
+        $auth->addChild($anunciante, $criarRegistoSaude);
+        $auth->addChild($anunciante, $editarRegistoSaudeProprio);
+        $auth->addChild($anunciante, $eliminarRegistoSaudeProprio);
+        $auth->addChild($anunciante, $avaliarCandidatura);
+
+        $associacao = $auth->createRole('associacao');
+        $auth->add($associacao);
+        // Ligar permissões ao papel associação
+        $auth->addChild($associacao, $consultarAnimal);
+        $auth->addChild($associacao, $consultarAssociacao);
+        $auth->addChild($associacao, $editarPerfilProprio);
+        $auth->addChild($associacao, $criarAnimal);
+        $auth->addChild($associacao, $editarAnimalProprio);
+        $auth->addChild($associacao, $eliminarAnimalProprio);
+        $auth->addChild($associacao, $consultarSaude);
+        $auth->addChild($associacao, $criarRegistoSaude);
+        $auth->addChild($associacao, $editarRegistoSaudeProprio);
+        $auth->addChild($associacao, $eliminarRegistoSaudeProprio);
+        $auth->addChild($associacao, $avaliarCandidatura);
+
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+// Ligar permissões ao papel admin
+        $auth->addChild($admin, $consultarAnimal);
+        $auth->addChild($admin, $consultarAssociacao);
+        $auth->addChild($admin, $editarPerfilProprio);
+        $auth->addChild($admin, $criarAnimal);
+        $auth->addChild($admin, $editarAnimalProprio);
+        $auth->addChild($admin, $eliminarAnimalProprio);
+        $auth->addChild($admin, $editarQualquerAnimal);
+        $auth->addChild($admin, $eliminarQualquerAnimal);
+        $auth->addChild($admin, $consultarSaude);
+        $auth->addChild($admin, $criarRegistoSaude);
+        $auth->addChild($admin, $editarRegistoSaudeProprio);
+        $auth->addChild($admin, $eliminarRegistoSaudeProprio);
+        $auth->addChild($admin, $avaliarCandidatura);
+        $auth->addChild($admin, $gerirUtilizadores);
+        $auth->addChild($admin, $gerirCatalogo);
+        $auth->addChild($admin, $configurarSistema);
+
+
+        //atribuiçoes
+        $auth->assign($admin, 1);
+        $auth->assign($associacao, 2);
+        $auth->assign($anunciante, 3);
+        $auth->assign($adotante, 4);
+
+        echo "RBAC inicializado.\n";
         return ExitCode::OK;
-    }
-
-    /**
-     * Remove (revoga) um papel de um utilizador.
-     *
-     * @param string $username Nome de utilizador.
-     * @param string $papel    Identificador do papel a remover.
-     * @return int Código de saída da consola.
-     */
-    public function actionRevoke(string $username, string $papel): int
-    {
-        $user = $this->utilizador($username);
-        $role = $this->papel($papel);
-        if ($user === null || $role === null) {
-            return ExitCode::DATAERR;
-        }
-
-        // Revoga a atribuição no authManager (não apaga o utilizador nem o papel).
-        Yii::$app->authManager->revoke($role, $user->id);
-        $this->stdout("Papel '{$papel}' retirado a '{$username}'.\n");
-
-        return ExitCode::OK;
-    }
-
-    /**
-     * Lista todos os papéis atualmente atribuídos a um utilizador.
-     *
-     * @param string $username Nome de utilizador.
-     * @return int Código de saída da consola.
-     */
-    public function actionRoles(string $username): int
-    {
-        $user = $this->utilizador($username);
-        if ($user === null) {
-            return ExitCode::DATAERR;
-        }
-
-        // Obtém os papéis efetivos do utilizador a partir do authManager.
-        $papeis = array_keys(Yii::$app->authManager->getRolesByUser($user->id));
-        $this->stdout("'{$username}': " . ($papeis ? implode(', ', $papeis) : '(sem papéis)') . "\n");
-
-        return ExitCode::OK;
-    }
-
-    /**
-     * Procura um utilizador pelo username e reporta erro se não existir.
-     */
-    private function utilizador(string $username): User|null
-    {
-        $user = User::findOne(['username' => $username]);
-        if ($user === null) {
-            $this->stderr("Utilizador '{$username}' não encontrado.\n");
-        }
-
-        return $user;
-    }
-
-    /**
-     * Valida se o nome do papel é permitido e se existe no authManager.
-     */
-    private function papel(string $nome): \yii\rbac\Role|null
-    {
-        // Restringe aos papéis conhecidos para evitar operações acidentais com nomes inválidos.
-        if (!in_array($nome, self::PAPEIS, true)) {
-            $this->stderr("Papel inválido. Use: " . implode(', ', self::PAPEIS) . "\n");
-            return null;
-        }
-
-        return Yii::$app->authManager->getRole($nome);
     }
 }

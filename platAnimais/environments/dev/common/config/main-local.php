@@ -6,15 +6,15 @@ return [
             \yii\mail\MailerInterface::class => [
                 'class' => \yii\symfonymailer\Mailer::class,
                 'viewPath' => '@common/mail',
-                // send all mails to a file by default.
+                // envia todos os emails para um ficheiro por predefinicao.
                 'useFileTransport' => true,
-                // You have to set
+                // Tem de definir
                 //
                 // 'useFileTransport' => false,
                 //
-                // and configure a transport for the mailer to send real emails.
+                // e configurar um transporte para o mailer enviar emails reais.
                 //
-                // SMTP server example:
+                // Exemplo de servidor SMTP:
                 //    'transport' => [
                 //        'scheme' => 'smtps',
                 //        'host' => '',
@@ -24,13 +24,13 @@ return [
                 //        'dsn' => 'native://default',
                 //    ],
                 //
-                // DSN example:
+                // Exemplo de DSN:
                 //    'transport' => [
                 //        'dsn' => 'smtp://user:pass@smtp.example.com:25',
                 //    ],
                 //
-                // See: https://symfony.com/doc/current/mailer.html#using-built-in-transports
-                // Or if you use a 3rd party service, see:
+                // Ver: https://symfony.com/doc/current/mailer.html#using-built-in-transports
+                // Ou, se usar um servico de terceiros, consulte:
                 // https://symfony.com/doc/current/mailer.html#using-a-3rd-party-transport
             ],
         ],

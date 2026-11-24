@@ -2,4 +2,4 @@
 
 declare(strict_types=1);
 
-// add acceptance testing specific bootstrap code here
+// adicione aqui codigo de bootstrap especifico para testes de aceitacao

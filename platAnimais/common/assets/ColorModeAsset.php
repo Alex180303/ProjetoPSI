@@ -8,9 +8,9 @@ use yii\web\AssetBundle;
 use yii\web\View;
 
 /**
- * Color mode toggle asset bundle.
+ * Asset bundle para alternar o modo de cor.
  *
- * Provides the Bootstrap 5.3+ dark/light theme toggle script shared by frontend and backend.
+ * Disponibiliza o script de alternancia de tema claro/escuro (Bootstrap 5.3+) partilhado pelo frontend e backend.
  */
 class ColorModeAsset extends AssetBundle
 {

@@ -29,13 +29,13 @@ class ResendVerificationEmailForm extends Model
     }
 
     /**
-     * Sends confirmation email to user.
+     * Envia o email de confirmacao ao utilizador.
      *
-     * @param MailerInterface $mailer the mailer component.
-     * @param string $supportEmail the support email address.
-     * @param string $appName the application name.
+     * @param MailerInterface $mailer componente de envio de email.
+     * @param string $supportEmail endereco de email de suporte.
+     * @param string $appName nome da aplicacao.
      *
-     * @return bool whether the email was sent.
+     * @return bool indica se o email foi enviado.
      */
     public function sendEmail(MailerInterface $mailer, string $supportEmail, string $appName): bool
     {

@@ -1,4 +1,4 @@
-# global codeception file to run tests from all apps
+# ficheiro global do Codeception para executar testes de todas as aplicacoes
 include:
     - common
     - frontend

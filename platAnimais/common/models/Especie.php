@@ -3,7 +3,7 @@
 namespace common\models;
 
 /**
- * This is the model class for table "especie".
+ * Esta e a classe de modelo para a tabela "especie".
  *
  * @property int $id
  * @property string $nome
@@ -46,7 +46,7 @@ class Especie extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Racas]].
+     * Obtem a query para [[Racas]].
      *
      * @return \yii\db\ActiveQuery
      */

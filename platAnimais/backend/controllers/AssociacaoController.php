@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use common\models\Associacao;
 use backend\models\AssociacaoSearch;
-use common\rbac\Rbac;
+use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -32,10 +32,7 @@ class AssociacaoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'allow' => true,
-                            'permissions' => [Rbac::GERIR_CATALOGO],
-                        ],
+                        ['allow' => true, 'roles' => ['@']],
                     ],
                 ],
                 'verbs' => [
@@ -70,6 +67,9 @@ class AssociacaoController extends Controller
      */
     public function actionView($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,6 +80,9 @@ class AssociacaoController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = new Associacao();
 
         if ($this->request->isPost) {
@@ -103,6 +106,9 @@ class AssociacaoController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -122,6 +128,9 @@ class AssociacaoController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('gerirCatalogo')) {
+            throw new ForbiddenHttpException('Não tens permissão.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "ficha_clinica".
+ * Esta e a classe de modelo para a tabela "ficha_clinica".
  *
  * @property int $id
  * @property int $animal_id
@@ -60,7 +60,7 @@ class FichaClinica extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Animal]].
+     * Obtem a query para [[Animal]].
      *
      * @return \yii\db\ActiveQuery
      */
