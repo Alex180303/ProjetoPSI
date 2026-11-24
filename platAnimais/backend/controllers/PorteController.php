@@ -32,7 +32,7 @@ class PorteController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        ['allow' => true, 'roles' => ['@']],
+                        ['allow' => true, 'roles' => ['gerirCatalogo']],
                     ],
                 ],
                 'verbs' => [
@@ -48,9 +48,6 @@ class PorteController extends Controller
     /** Lista portes com pesquisa/filtros. */
     public function actionIndex()
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $searchModel = new PorteSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -63,9 +60,6 @@ class PorteController extends Controller
     /** Mostra detalhes de um porte. @throws NotFoundHttpException */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -74,9 +68,6 @@ class PorteController extends Controller
     /** Cria um novo porte. */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new Porte();
 
         if ($this->request->isPost) {
@@ -95,9 +86,6 @@ class PorteController extends Controller
     /** Atualiza um porte existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -112,9 +100,6 @@ class PorteController extends Controller
     /** Remove um porte. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

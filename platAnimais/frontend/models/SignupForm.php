@@ -76,7 +76,7 @@ class SignupForm extends Model
         if ($adotante !== null) {
             $auth->assign($adotante, $user->getId());
         }
-        return $this->$user;
+        return true;
 
 //        return $this->sendEmail($mailer, $user, $supportEmail, $appName);
     }

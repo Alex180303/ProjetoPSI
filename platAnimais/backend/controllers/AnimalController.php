@@ -39,13 +39,14 @@ class AnimalController extends Controller
                     ],
                 ],
                 'access' => [
-                    'access' => [
-                        'class' => AccessControl::class,
-                        'rules' => [
-                            ['allow' => true, 'roles' => ['@']],
-                        ],
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        ['actions' => ['index', 'view'], 'allow' => true, 'roles' => ['consultarAnimal']],
+                        ['actions' => ['create'],        'allow' => true, 'roles' => ['criarAnimal']],
+                        ['actions' => ['update'],        'allow' => true, 'roles' => ['editarQualquerAnimal']],
+                        ['actions' => ['delete'],        'allow' => true, 'roles' => ['eliminarQualquerAnimal']],
                     ],
-                ]
+                ],
             ]
         );
     }
@@ -57,9 +58,6 @@ class AnimalController extends Controller
      */
     public function actionIndex()
     {
-        if (!Yii::$app->user->can('consultarAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $searchModel = new AnimalSearch();
         // Aplica parâmetros de pesquisa da query string ao data provider.
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -79,9 +77,6 @@ class AnimalController extends Controller
      */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('consultarAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -96,9 +91,6 @@ class AnimalController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('criarAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new Animal();
 
         if ($this->request->isPost) {
@@ -125,9 +117,6 @@ class AnimalController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('editarQualquerAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         // Em POST com dados válidos, guarda alterações e redireciona para a view.
@@ -151,9 +140,6 @@ class AnimalController extends Controller
      */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('eliminarQualquerAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

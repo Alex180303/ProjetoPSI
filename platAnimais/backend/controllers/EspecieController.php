@@ -32,7 +32,7 @@ class EspecieController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        ['allow' => true, 'roles' => ['@']],
+                        ['allow' => true, 'roles' => ['gerirCatalogo']],
                     ],
                 ],
                 'verbs' => [
@@ -68,9 +68,6 @@ class EspecieController extends Controller
     /** Cria uma nova espécie. */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new Especie();
 
         if ($this->request->isPost) {
@@ -89,9 +86,6 @@ class EspecieController extends Controller
     /** Atualiza uma espécie existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -106,9 +100,6 @@ class EspecieController extends Controller
     /** Remove uma espécie. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

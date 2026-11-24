@@ -34,7 +34,7 @@ class AdocaoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        ['allow' => true, 'roles' => ['@']],
+                        ['allow' => true, 'roles' => ['avaliarCandidatura']],
                     ],
                 ],
                 'verbs' => [
@@ -80,9 +80,6 @@ class AdocaoController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('avaliarCandidatura')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new Adocao();
 
         if ($this->request->isPost) {
@@ -106,9 +103,6 @@ class AdocaoController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('avaliarCandidatura')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -128,9 +122,6 @@ class AdocaoController extends Controller
      */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('avaliarCandidatura')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

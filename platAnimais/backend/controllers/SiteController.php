@@ -37,7 +37,20 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
-                    ['allow' => true, 'roles' => ['@']],
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['acederBackoffice'],
+                    ],
                 ],
             ],
             'verbs' => [
@@ -69,9 +82,6 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        if (!Yii::$app->user->can('configurarSistema')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         return $this->render('index');
     }
 
@@ -93,7 +103,14 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            // Credenciais certas: confirma agora se o papel tem acesso ao backoffice.
+            if (Yii::$app->user->can('acederBackoffice')) {
+                return $this->goBack();
+            }
+
+            // Sem permissão: termina a sessão que acabou de ser criada.
+            Yii::$app->user->logout();
+            $model->addError('username', 'Não tens permissão para aceder ao backoffice.');
         }
 
         // Não reenviar a password para a view.

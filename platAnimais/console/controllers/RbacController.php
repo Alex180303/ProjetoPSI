@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
+use yii\console\ExitCode;
 
 class RbacController extends Controller
 {
@@ -139,6 +140,12 @@ class RbacController extends Controller
 
         $admin = $auth->createRole('admin');
         $auth->add($admin);
+
+        $acederBackoffice = $auth->createPermission('acederBackoffice');
+        $acederBackoffice->description = 'Aceder ao backoffice';
+        $auth->add($acederBackoffice);
+
+
 // Ligar permissões ao papel admin
         $auth->addChild($admin, $consultarAnimal);
         $auth->addChild($admin, $consultarAssociacao);
@@ -156,15 +163,25 @@ class RbacController extends Controller
         $auth->addChild($admin, $gerirUtilizadores);
         $auth->addChild($admin, $gerirCatalogo);
         $auth->addChild($admin, $configurarSistema);
-
-
-        //atribuiçoes
-        $auth->assign($admin, 1);
-        $auth->assign($associacao, 2);
-        $auth->assign($anunciante, 3);
-        $auth->assign($adotante, 4);
+        $auth->addChild($associacao, $acederBackoffice);
+        $auth->addChild($admin, $acederBackoffice);
 
         echo "RBAC inicializado.\n";
+        return ExitCode::OK;
+    }
+        public function actionAssign(string $username, string $role): int
+    {
+        $auth = Yii::$app->authManager;
+        $user = \common\models\User::findByUsername($username);
+        $papel = $auth->getRole($role);
+
+        if (!$user || !$papel) {
+            echo "Utilizador ou papel não encontrado.\n";
+            return ExitCode::DATAERR;
+        }
+
+        $auth->assign($papel, $user->getId());
+        echo "Papel '$role' atribuído a '$username'.\n";
         return ExitCode::OK;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
-class AnimalController
+use Yii;
+
+class AnimalController extends Controller
 {
     public function actionCreate()
     {

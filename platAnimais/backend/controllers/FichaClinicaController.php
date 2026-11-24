@@ -32,7 +32,10 @@ class FichaClinicaController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        ['allow' => true, 'roles' => ['@']],
+                        ['actions' => ['index', 'view'], 'allow' => true, 'roles' => ['consultarSaude']],
+                        ['actions' => ['create'],        'allow' => true, 'roles' => ['criarRegistoSaude']],
+                        ['actions' => ['update'],        'allow' => true, 'roles' => ['editarRegistoSaudeProprio']],
+                        ['actions' => ['delete'],        'allow' => true, 'roles' => ['eliminarRegistoSaudeProprio']],
                     ],
                 ],
                 'verbs' => [
@@ -48,9 +51,6 @@ class FichaClinicaController extends Controller
     /** Lista fichas clínicas com pesquisa/filtros. */
     public function actionIndex()
     {
-        if (!Yii::$app->user->can('consultarSaude')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $searchModel = new FichaClinicaSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -63,9 +63,6 @@ class FichaClinicaController extends Controller
     /** Mostra detalhes de uma ficha clínica. @throws NotFoundHttpException */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('consultarSaude')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -74,12 +71,6 @@ class FichaClinicaController extends Controller
     /** Cria uma nova ficha clínica. */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('criarRegistoSaude')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
-        if (!Yii::$app->user->can('criarAnimal')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new FichaClinica();
 
         if ($this->request->isPost) {
@@ -98,9 +89,6 @@ class FichaClinicaController extends Controller
     /** Atualiza uma ficha clínica existente. @throws NotFoundHttpException */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('editarRegistoSaudeProprio')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -115,9 +103,6 @@ class FichaClinicaController extends Controller
     /** Remove uma ficha clínica. @throws NotFoundHttpException */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('eliminarRegistoSaudeProprio')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

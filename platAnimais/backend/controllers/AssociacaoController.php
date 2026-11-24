@@ -32,7 +32,7 @@ class AssociacaoController extends Controller
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        ['allow' => true, 'roles' => ['@']],
+                        ['allow' => true, 'roles' => ['gerirCatalogo']],
                     ],
                 ],
                 'verbs' => [
@@ -67,9 +67,6 @@ class AssociacaoController extends Controller
      */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,9 +77,6 @@ class AssociacaoController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = new Associacao();
 
         if ($this->request->isPost) {
@@ -106,9 +100,6 @@ class AssociacaoController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -128,9 +119,6 @@ class AssociacaoController extends Controller
      */
     public function actionDelete($id)
     {
-        if (!Yii::$app->user->can('gerirCatalogo')) {
-            throw new ForbiddenHttpException('Não tens permissão.');
-        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -145,9 +133,6 @@ class AssociacaoController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Associacao::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
