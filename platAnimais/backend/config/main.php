@@ -68,25 +68,38 @@ return [
             'showScriptName' => true,
             'rules' => [
                 [
-                    // Regra REST para o controller api/animais, incluindo ações extra personalizadas.
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/animais',
                     'extraPatterns' => [
-                        'GET count' => 'count',                       // Contagem total de animais
-                        'GET nomes' => 'nomes',                       // Lista de nomes
-                        'GET especie' => 'especie',                   // Lista de espécies
-                        'GET idade' => 'idade',                       // Lista de idades
-                        'GET idade/{nomeanimal}' => 'idadepornome',  // Idade(s) por nome
-                        'DELETE {nomeanimal}' => 'delpornome',        // Apagar por nome
-                        'PUT {nomeanimal}' => 'putidadepornome',      // Atualizar idade por nome
+                        'GET count' => 'count',                          // Contagem total de animais
+                        'GET nomes' => 'nomes',                         // Lista de nomes
+                        'GET especie' => 'especie',                     // Lista de espécies
+                        'GET especie/{nomeanimal}' => 'especiepornome', // Lista de espécies por nome
+                        'GET idade' => 'idade',                         // Lista de idades
+                        'GET idade/{nomeanimal}' => 'idadepornome',     // Idade por nome
+                        'DELETE {nomeanimal}' => 'delpornome',          // Apagar por nome
+                        'PUT {nomeanimal}' => 'putidadepornome',        // Atualizar idade por nome
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\d+>',
                         '{nomeanimal}' => '<nomeanimal:\\w+>',
                     ],
-                ],
+
+
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/adocao',
+                    'pluralize' => false,
+                    'extraPatterns' => [    
+                        'PUT {id}/aprovado' => 'aprovado',
+                        'PUT {id}/pendente' => 'pendente',
+                        'PUT {id}/rejeitado' => 'rejeitado',
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\\d+>',
+                    ],
             ],
         ],
+    ],
 
     ],
     // Parâmetros finais disponíveis em Yii::$app->params.
