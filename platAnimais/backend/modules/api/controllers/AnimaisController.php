@@ -26,7 +26,6 @@ class AnimaisController extends ActiveController
         return $recs;
     }
 
-
     public function actionEspecie()
     {
         $animalModel = new $this->modelClass;
@@ -35,10 +34,18 @@ class AnimaisController extends ActiveController
     }
 
 
+
     public function actionIdade()
     {
         $animalModel = new $this->modelClass;
         $recs = $animalModel::find()->select(['idade'])->all();
+        return $recs;
+    }
+
+    public function actionCor()
+    {
+        $animalModel = new $this->modelClass;
+        $recs = $animalModel::find()->select(['cor'])->all();
         return $recs;
     }
 
@@ -77,5 +84,19 @@ class AnimaisController extends ActiveController
     {
         $animalModel = new $this->modelClass;
         return $animalModel::find()->select(['especie'])->where(['nome' => $nomeanimal])->all();
+    }
+
+    public function actionPostanimalvazio()
+    {
+        $animalmodel = new $this->modelClass;
+        $animalmodel->nome = 'Sem nome';
+        $animalmodel->idade = 0;
+        $animalmodel->sexo = 0;
+        $animalmodel->especie_id = 1;
+        $animalmodel->cor = ' ';
+        $animalmodel->descricao = ' ';
+        $animalmodel->save();
+
+        return $animalmodel;
     }
 }

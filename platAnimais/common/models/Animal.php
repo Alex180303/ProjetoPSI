@@ -48,7 +48,10 @@ class Animal extends \yii\db\ActiveRecord
             [['nome'], 'string', 'max' => 100],
             [['cor'], 'string', 'max' => 50],
             [['especie_id'], 'exist', 'skipOnError' => true, 'targetClass' => Especie::class, 'targetAttribute' => ['especie_id' => 'id']],
-            [['especie_id', 'raca_id'], 'exist', 'skipOnError' => true, 'targetClass' => Raca::class, 'targetAttribute' => ['especie_id' => 'especie_id', 'raca_id' => 'id']],
+            [['especie_id', 'raca_id'], 'exist', 'skipOnError' => true, 'targetClass' => Raca::class, 'targetAttribute' => ['especie_id' => 'especie_id', 'raca_id' => 'id'],
+                'when' => function ($model) {
+                    return $model->raca_id !== null;
+                }],
             [['utilizador_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['utilizador_id' => 'id']],
         ];
     }
