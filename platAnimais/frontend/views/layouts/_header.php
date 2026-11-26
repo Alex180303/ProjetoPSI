@@ -21,7 +21,7 @@ $user = Yii::$app->user;
                 Html::img(Yii::getAlias('@web/imagens/Logotipo.png'), [
                         'alt' => '',
                         'class' => 'login-logo-image',
-//                        'style' => 'height: 32px !important; width: auto !important;',
+                        'style' => 'height: 32px !important; width: auto !important;',
                 ]) . Html::tag('span', 'Petpanion', ['class' => 'login-logo-text']),
                 Url::home(),
                 [

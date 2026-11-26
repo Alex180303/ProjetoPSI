@@ -112,7 +112,6 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        $this->layout = 'main-home'; // template da homepage
         return $this->render('index');
     }
 
